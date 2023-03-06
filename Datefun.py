@@ -5,8 +5,9 @@ def doy(year, month, day):
     d1 = dt.date(year, month, day)
     return (d1 - d0).days
 
-def frcofd():
-    pass
+def frcofd(hour, minute, second):
+    sec = hour * 360 + minute * 60 + second
+    return sec/(24*60*60)
 
 def ep2dat():
     pass
