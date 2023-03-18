@@ -9,11 +9,11 @@ def doy(year:int, month:int, day:int) -> float:
 
 def frcofd(hour:int, minute:int, second:int) -> float:
     """Takes in the current hour, minute, and second and returns the fraction of the day"""
-    sec = hour * 360 + minute * 60 + second
+    sec = (hour * 60 * 60) + (minute * 60) + second
     return float(sec/(24*60*60))
 
 def ep2dat(epoch) -> dt.datetime:
-    """Takes in the julian date and returns the current datetime in <YYYY-MM-DD HH:MM:SS> format"""
+    """Takes in the epoch and returns the current datetime in <YYYY-MM-DD HH:MM:SS> format"""
     epoch = str(epoch)
     year = int("20" + epoch[0:2])
     days = int(epoch[2:5])

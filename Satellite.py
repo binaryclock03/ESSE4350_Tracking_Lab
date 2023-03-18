@@ -25,3 +25,6 @@ class Satellite():
             self.mean_an = float(lines[2][42:51])
             self.mean_mo = float(lines[2][51:61])
             self.orbitnum = int(lines[2][61:66])
+            self.ndot2 = float(lines[1][30:40])
+            self.nddot6 = float(lines[1][42:46])
+            self.bstar = float(lines[1][49:54])
