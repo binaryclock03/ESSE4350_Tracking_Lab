@@ -165,11 +165,14 @@ package Sattrak
     Real v_ECF[3];
     
     //Real p_TOP[3];
+    //Real v_TOP[3];
     
     //inputs lol
-    Real inc = 90;
+    Real inc = 0;
     Real argper = 0;
     Real raan = 0;
+    Real GMST = 0;
+    
   equation
     p_PF = MyTest.P_sat_pf;
     v_PF = MyTest.v_sat_pf;
@@ -181,8 +184,11 @@ package Sattrak
     
     (p_ECI, v_ECI) = sat_PFtoECI(ang={argper,inc,raan}, p_PF = p_PF, v_PF = v_PF);
     
-    (p_ECF, v_ECF) = sat_ECItoECF(ang=0, p_ECI=p_ECI, v_ECI=v_ECI);
-    //p_ECF = sat_ECItoECF();
+    (p_ECF, v_ECF) = sat_ECItoECF(ang=GMST, p_ECI=p_ECI, v_ECI=v_ECI);
+    
+    //(p_TOP, v_TOP) = range_ECFtoTOPO(ang = re,p_stn_ECF=p_stn_ECF , p_ECF=p_ECF, v_ECF=v_ECF);
+    
+    
     
     annotation(
       Documentation(info "GPS BIII-6  (PRN 28)   
