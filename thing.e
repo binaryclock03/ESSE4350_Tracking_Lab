@@ -12,6 +12,6 @@ CoordinateSystem J2000
 
 EphemerisTimePosVel
 
-0 1.8475683476587346 2 3 6 5 4
+20 1.847 2 3 6 5 4
 
 END Ephemeris

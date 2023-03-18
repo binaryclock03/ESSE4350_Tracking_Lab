@@ -37,7 +37,7 @@ def STKout(EphemFile, StartString, epsec, Coord, time, position, velocity):
     to_write.append("")
     
     for i in range(num_points):
-        to_write.append(str(time[i]) + " " 
+        to_write.append(str(time[i] + epsec) + " " 
                         + str(position[i][0]) + " "
                         + str(position[i][1]) + " " 
                         + str(position[i][2]) + " "
@@ -54,7 +54,27 @@ def STKout(EphemFile, StartString, epsec, Coord, time, position, velocity):
     with open("thing.e", 'w') as file:
         file.writelines(to_write)
 
-def STKout_sp(SPFile, time, epsec, Azimuth, Elevation):
-    pass
+def STKout_sp(SPFile, epsec, time, Azimuth, Elevation):
+    num_points = len(time)
+    to_write = []
+    to_write.append("stk.v.4.3")
+    to_write.append("Begin Attitude")
+    to_write.append("NumberofAttitudePoints " + str(num_points))
+    to_write.append("Sequence 313")
+    to_write.append("AttitudeTimeAzElAngles")
+    
+    for i in range(num_points):
+        to_write.append(str(time[i] + epsec) + " " 
+                        + str(Azimuth[i]) + " "
+                        + str(Elevation[i]))
 
-STKout(10, "hello", 20, "J2000", [0], [(1.847,2,3)], [(6,5,4)])
+    to_write.append("End Attitude")
+
+    for i in range(len(to_write)):
+        to_write[i] += "\n"
+
+    with open(SPFile, 'w') as file:
+        file.writelines(to_write)
+
+STKout("thing.e", "hello", 20, "J2000", [0], [(1.847,2,3)], [(6,5,4)])
+STKout_sp("sensor_pointing.sp", 10, [1,2], [0,1], [2,4])
