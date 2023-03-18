@@ -28,3 +28,8 @@ def curday() -> dt.datetime:
     """Returns the current datetime in <YYYY-MM-DD HH:MM:SS> format"""
     now = dt.datetime.now()
     return now.utcnow()
+
+def days_since_J2000(year, month, day):
+    d0 = dt.date(2000, 1, 1)
+    d1 = dt.date(year, month, day)
+    return float((d1 - d0).days)

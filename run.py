@@ -4,7 +4,7 @@ import Datefun as df
 import Fileio as fi
 
 constellation = []
-constellation.append(Satellite("TLE.dat"))
+constellation.append(Satellite("TLE.txt"))
 print("----------------------")
 print("Sattelite Test")
 print("name " + str(constellation[0].name))
@@ -37,7 +37,7 @@ print("----------------------")
 print("Datefun Test")
 print("doy " + str(df.doy(2000, 12, 31)))
 print("frcofd " + str(df.frcofd(12,0,0)))
-print("ep2dat " + str(df.ep2dat(230000)))
+print("ep2dat " + str(df.ep2dat("0" + str(constellation[0].refepoch))))
 print("curday " + str(df.curday()))
 
 print("----------------------")
