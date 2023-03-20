@@ -6,6 +6,9 @@ def banner():
     welcome_msg = "Hello we are the two called Luke and Daniel"
     print(f"ESSE4350 2023-03-06 v{ver}\n{welcome_msg}")
 
+def linespace():
+    print('------------------------')
+
 def anykey():
     import msvcrt as m
     m.getch()
@@ -16,8 +19,19 @@ def errmsg(error_str):
 def ReadStationFile(station_file_path) -> Station:
     return Station(station_file_path)
 
-def ReadNoradTLE(sattelite_file_path) -> Satellite:
-    return Satellite(sattelite_file_path)
+def ReadNoradTLE(sattelite_file_path) -> dict:
+    with open(sattelite_file_path) as file:
+        lines = file.readlines()
+        num_sats = len(lines)/3
+        if num_sats != int(num_sats):
+            errmsg("Non integer number of sattelites detected")
+        num_sats = int(num_sats)
+
+        constellation = {}
+        for i in range(num_sats):
+            sat = Satellite(lines[i:i+3])
+            constellation.update({sat.name:sat})
+    return constellation
 
 def STKout(EphemFile, StartString, epsec, Coord, time, position, velocity):
     # define how many point are in the file
