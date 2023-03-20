@@ -33,3 +33,16 @@ class Station():
 
             self.st_az_speed_max = float(lines[self.az_el_nlim - 1 + 7])
             self.st_el_speed_max = float(lines[self.az_el_nlim - 1 + 8])
+
+    def __str__(self):
+        string = ""
+        string += ('Name: "' + self.name + '"\n')
+        string += ("StnLat: " + str(self.stnlat) + "\n")
+        string += ("StnLon: " + str(self.stnlon) + "\n")
+        string += ("StnAlt: " + str(self.stnalt) + "\n")
+        string += ("utc_offset: " + str(self.utc_offset) + "\n")
+        string += ("az_el_nlim: " + str(self.az_el_nlim)+ "\n")
+        string += ("az_el_lim: " + str(self.az_el_lim) + "\n")
+        string += ("stn azimuth speed_max: " + str(self.st_az_speed_max)+ "\n")
+        string += ("stn elevation speed max: " + str(self.st_el_speed_max))
+        return string
