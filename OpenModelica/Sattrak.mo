@@ -58,33 +58,43 @@ package Sattrak
   function sat_PFtoECI "converts from periforcal to ECI coordinates"
     import Modelica.Mechanics.MultiBody.Frames.TransformationMatrices.axesRotations;
     import Modelica.Mechanics.MultiBody.Frames.TransformationMatrices.resolve2;
+    
     input Real ang[3] "argper, inc, raan";
     input Real p_PF[3] "pos in perifocal (km)";
     input Real v_PF[3] "vel in perifocal (km)";
+    
     output Real p_ECI[3] "pos in ECI (km)";
     output Real v_ECI[3] "vel in ECI (km/2)";
+    
   protected
-    Real TM[3, 3] = axesRotations(sequence = {3, 1, 3}, angles = ang*d2r);
     constant Real d2r = Modelica.Constants.D2R "Degrees to radians";
+    Real TM[3, 3] = axesRotations(sequence = {3, 1, 3}, angles = ang*d2r);
+    
   algorithm
     p_ECI := resolve2(TM, p_PF);
     v_ECI := resolve2(TM, v_PF);
+    
   end sat_PFtoECI;
 
   function sat_ECItoECF
     import Modelica.Mechanics.MultiBody.Frames.TransformationMatrices.axesRotations;
     import Modelica.Mechanics.MultiBody.Frames.TransformationMatrices.resolve2;
+    
     input Real ang "GMST angle (deg)";
     input Real p_ECI[3] "pos in ECI (km)";
     input Real v_ECI[3] "vel in ECI (km/s)";
+    
     output Real p_ECF[3] "pos in ECF (km)";
     output Real v_ECF[3] "vel in ECF (km/s)";
+    
   protected
-    Real TM[3, 3] = axesRotations(sequence = {3, 1, 1}, angles = {ang*d2r, 0, 0});
     constant Real d2r = Modelica.Constants.D2R "Degrees to radians";
+    Real TM[3, 3] = axesRotations(sequence = {3, 1, 1}, angles = {ang*d2r, 0, 0});
+    
   algorithm
     p_ECF := resolve2(TM, p_ECI);
     v_ECF := resolve2(TM, v_ECI);
+    
   end sat_ECItoECF;
 
   function range_ECFtoTOPO

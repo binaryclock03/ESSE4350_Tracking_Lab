@@ -1,4 +1,4 @@
-from python_lib.Fileio import *
+from python_lib.fileio import *
 
 STKout("outputs/thing.e", "hello", 20, "J2000", [0], [(100000 ,0,0)], [(0,0,0)])
 print("hello")

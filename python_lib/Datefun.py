@@ -30,6 +30,13 @@ def curday() -> dt.datetime:
     return now.utcnow()
 
 def days_since_J2000(year, month, day):
+    """Returns the number of days from J200 to the given year month and day"""
     d0 = dt.date(2000, 1, 1)
     d1 = dt.date(year, month, day)
     return float((d1 - d0).days)
+
+def seconds_to_midnight(epoch):
+    """Returns the number of seconds from the Epoch to the next midnight"""
+    d0 = ep2dat(epoch)
+    d1 = dt.datetime(year=d0.year, month=d0.month, day=d0.day+1, hour=0)
+    return float((d1 - d0).seconds)

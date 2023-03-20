@@ -1,7 +1,7 @@
-from python_lib.Satellite import Satellite
-from python_lib.Station import Station
-import python_lib.Datefun as df
-import python_lib.Fileio as fi
+from python_lib.satellite import Satellite
+from python_lib.station import Station
+import python_lib.datefun as df
+import python_lib.fileio as fi
 
 constellation = []
 constellation.append(Satellite("inputs/TLE.txt"))

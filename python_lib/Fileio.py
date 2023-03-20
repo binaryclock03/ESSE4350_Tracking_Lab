@@ -1,5 +1,5 @@
-from python_lib.Station import Station
-from python_lib.Satellite import Satellite
+from python_lib.station import Station
+from python_lib.satellite import Satellite
 
 def banner():
     ver = 0.1
