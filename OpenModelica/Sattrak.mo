@@ -138,7 +138,7 @@ package Sattrak
   end theta_d;
 
   model Sat_Test
-    Sattrak.Satellite MyTest(tstart = 64800., M0 = 224.6824, N0 = 2.00574691, eccn = 0.0086707, Ndot2 = 1.5e-07, Nddot6 = 0.);
+    Sattrak.Satellite MyTest(tstart = 64800., M0 = 332.1454, N0 = 2.00551869, eccn = 0.0044031, Ndot2 = 2e-08, Nddot6 = 0.);
     Real r "Sat radial distance (km)";
     Real theta "true anomaly (deg)";
     Real E "Eccentric anomaly (deg";
@@ -158,10 +158,10 @@ package Sattrak
     //Real v_TOP[3];
     
     //inputs lol
-    Real inc = 55.1681;
-    Real argper = 285.742;
-    Real raan = 136.112;
-    Real epoch_days = 8477;
+    Real inc = 54.2891;
+    Real argper = 197.0775;
+    Real raan = 67.6028;
+    Real epoch_days = 8478;
   equation
     GMST = theta_d(days=epoch_days, hours=(time/3600)+0);
   

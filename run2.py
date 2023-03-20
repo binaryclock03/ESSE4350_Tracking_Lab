@@ -1,9 +1,7 @@
-from Satellite import Satellite
-from Station import Station
-import Datefun as df
-import Fileio as fi
+from python_lib.Satellite import Satellite
+import python_lib.Datefun as df
 
-sat = Satellite("TLE.txt")
+sat = Satellite("inputs/TLE.txt")
 
 date = df.ep2dat(sat.refepoch)
 print(date)

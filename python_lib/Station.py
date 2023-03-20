@@ -1,7 +1,7 @@
 class Station():
     name:str
     stnlat:float
-    stnlong:float
+    stnlon:float
     stnalt:float
     utc_offset:float
     az_el_nlim:int
@@ -17,7 +17,7 @@ class Station():
                 lines[i] = line.split("!", 1)[0].replace("\n", "")
             
             self.name = str(lines[0])
-            self.strlat = float(lines[1])
+            self.stnlat = float(lines[1])
             self.stnlon = float(lines[2])
             self.stnalt = float(lines[3])
             self.utc_offset = float(lines[4])

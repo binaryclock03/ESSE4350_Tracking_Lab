@@ -4,7 +4,7 @@ BEGIN Ephemeris
 
 NumberOfEphemerisPoints 1
 
-ScienarioEpoch hello
+ScenarioEpoch hello
 InterpolationMethod Lagrange
 InterpolationOrder 7
 CentralBody Earth
@@ -12,6 +12,6 @@ CoordinateSystem J2000
 
 EphemerisTimePosVel
 
-20 1.847 2 3 6 5 4
+20 100000 0 0 0 0 0
 
 END Ephemeris

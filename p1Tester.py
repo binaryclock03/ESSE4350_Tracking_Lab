@@ -1,10 +1,10 @@
-from Satellite import Satellite
-from Station import Station
-import Datefun as df
-import Fileio as fi
+from python_lib.Satellite import Satellite
+from python_lib.Station import Station
+import python_lib.Datefun as df
+import python_lib.Fileio as fi
 
 constellation = []
-constellation.append(Satellite("TLE.txt"))
+constellation.append(Satellite("inputs/TLE.txt"))
 print("----------------------")
 print("Sattelite Test")
 print("name " + str(constellation[0].name))
@@ -20,11 +20,11 @@ print("nddot6 " + str(constellation[0].nddot6))
 print("bstar " + str(constellation[0].bstar))
 print("orbitnum " + str(constellation[0].orbitnum))
 
-station = Station("station.dat")
+station = Station("inputs/station.dat")
 print("----------------------")
 print("Station Test")
 print("name " + str(station.name))
-#print("stnlat " + str(station.stnlat))
+print("stnlat " + str(station.stnlat))
 print("stnlon " + str(station.stnlon))
 print("stnalt " + str(station.stnalt))
 print("utc_offset " + str(station.utc_offset))
@@ -37,7 +37,7 @@ print("----------------------")
 print("Datefun Test")
 print("doy " + str(df.doy(2000, 12, 31)))
 print("frcofd " + str(df.frcofd(12,0,0)))
-print("ep2dat " + str(df.ep2dat("0" + str(constellation[0].refepoch))))
+print("ep2dat " + str(df.ep2dat(str(constellation[0].refepoch))))
 print("curday " + str(df.curday()))
 
 print("----------------------")
