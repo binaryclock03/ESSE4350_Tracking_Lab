@@ -2,24 +2,30 @@ from python_lib.station import Station
 from python_lib.satellite import Satellite
 
 def banner():
+    """Creates our standard banner and prints it to the console"""
     ver = 0.1
     welcome_msg = "Hello we are the two called Luke and Daniel"
     print(f"ESSE4350 2023-03-06 v{ver}\n{welcome_msg}")
 
 def linespace():
+    """Prints a linespace to the console"""
     print('------------------------')
 
 def anykey():
+    """Pauses program execution until any key on the keyboard is pressed"""
     import msvcrt as m
     m.getch()
 
 def errmsg(error_str):
+    """Prints an error msg to the console as <[ERROR] error_str>"""
     print("[ERROR] " + error_str)
 
 def ReadStationFile(station_file_path) -> Station:
+    """Reads a station file and returns it as a station object"""
     return Station(station_file_path)
 
 def ReadNoradTLE(sattelite_file_path) -> dict:
+    """Reads a TLE file and returns a dictionary of sattelites of form {name:str : Satellite}"""
     with open(sattelite_file_path) as file:
         lines = file.readlines()
         num_sats = len(lines)/3
@@ -34,6 +40,7 @@ def ReadNoradTLE(sattelite_file_path) -> dict:
     return constellation
 
 def STKout(EphemFile, StartString, epsec, Coord, time, position, velocity):
+    """Writes an ephem file with the parameters given"""
     # define how many point are in the file
     num_points = len(time)
     # define the to_write list

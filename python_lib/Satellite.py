@@ -35,7 +35,7 @@ class Satellite():
         string += ("Eccn: " + str(self.eccn) + "\n")
         string += ("Arg Per: " + str(self.arg_per )+ "\n")
         string += ("Mean Anomoly: " + str(self.mean_an) + "\n")
-        string += ("Mean Motion: " + str(self.mean_an )+ "\n")
+        string += ("Mean Motion: " + str(self.mean_mo )+ "\n")
         string += ("Orbitnum: " + str(self.orbitnum) + "\n")
         string += ("Ndot2: " + str(self.ndot2) + "\n")
         string += ("Nddot6: " + str(self.nddot6) + "\n")

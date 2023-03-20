@@ -1,11 +1,17 @@
 from python_lib.satellite import Satellite
+import python_lib.fileio as fi
 import python_lib.datefun as df
 from python_lib.fileio import ReadNoradTLE
 
 const = ReadNoradTLE("inputs/TLE.txt")
-print(const)
+sat = const.get(list(const.keys())[0])
 
-epoch = 23062.38276793
+epoch = sat.refepoch
+print(sat.refepoch)
+
+fi.linespace()
+print(sat)
+
 
 date = df.ep2dat(epoch)
 print(df.seconds_to_midnight(epoch))
