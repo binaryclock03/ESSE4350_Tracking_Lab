@@ -79,6 +79,11 @@ package Sattrak
     Real p_sat_topo[3]"Position of satellite relative to station, topo coords (km)";
     Real v_sat_topo[3]"Velocity of satellite relative to station, topo coords(km/s)";
    
+    Real Azimuth "Azimuth look angle (deg)";
+    Real Elevation "Elevation look angle (deg)";
+    Real Azrate "Azimuth look angle (deg/min)";
+    Real Elrate "Elevation look angle (deg/min)";
+    Real Rrate "Range rate to dish (km/s)";
     
     Real days = 8483;
     Real hours =time/3600;
@@ -94,6 +99,9 @@ package Sattrak
    (p_sat_ECF,v_sat_ECF)=sat_ECF(ang=GMST, p_ECI=p_sat_ECI, v_ECI=v_sat_ECI);
    
    (p_sat_topo, v_sat_topo) = Range_ECF2topo(p_stn_ECF=GndTest.p_stn_ECF, p_sat_ECF=p_sat_ECF, v_sat_ECF=v_sat_ECF, TM=GndTest.TM);
+   
+  (Azimuth,Elevation,Azrate,Elrate,Rrate)= Range_topo2look_angles(stn_long=GndTest.stn_long, stn_lat=GndTest.stn_lat, stn_elev=GndTest.stn_elev, p_sat_topo=p_sat_topo, v_sat_topo=v_sat_topo);
+  
     annotation(
     Documentation(info "GPS BIIR-2  (PRN 13)    
   1 24876C 97035A   23081.69756944  .00000000  00000+0  00000+0 0   815
@@ -120,7 +128,7 @@ package Sattrak
   f= 1/298.25223563;
   e=sqrt(2*f-f^2);
   
-  a= {-sin(stn_long*d2r),-cos(stn_long*d2r),0} "first row";
+  a= {-sin(stn_long*d2r),cos(stn_long*d2r),0} "first row";
   
   b={-cos(stn_long*d2r)*sin(stn_lat*d2r), -sin(stn_long*d2r)*sin(stn_lat*d2r),cos(stn_lat*d2r)} "Second row";
   
@@ -203,6 +211,7 @@ p_sat_topo := resolve2(TM,p_sat_ECF-p_stn_ECF)"compute pos of sat relative to to
   function Range_topo2look_angles
   import Modelica.Mechanics.MultiBody.Frames.TransformationMatrices.axesRotations;
   import Modelica.Mechanics.MultiBody.Frames.TransformationMatrices.resolve2;
+  import Modelica.Math.atan;
    input Real stn_long "Station longitude (degE)";
    input Real stn_lat "Station latitude (degN)";
    input Real stn_elev "Station elevation (m)";
@@ -218,14 +227,14 @@ p_sat_topo := resolve2(TM,p_sat_ECF-p_stn_ECF)"compute pos of sat relative to to
   
   
   //Real TM[3,3] ={p_sat_topo[1] +T[1],p_sat_topo[2] +T[2],p_sat_topo[3] +T[3]}"ECF to topo coord";
-  Real R =sqrt(pow(p_sat_topo[1],2) + pow(p_sat_topo[2],2) + pow(p_sat_topo[3],2)) "Calculate range";
+  Real R =sqrt((p_sat_topo[1]^2) + (p_sat_topo[2]^2) + (p_sat_topo[3]^2)) "Calculate range";
   Real R_r= (p_sat_topo[1] * v_sat_topo[1] + p_sat_topo[2] * v_sat_topo[2]+ p_sat_topo[3]* v_sat_topo[3])/R "range rate to dish";
   
-  Real Az = atan(p_sat_topo[1],p_sat_topo[2])*180/Modelica.Constants.pi "Azimuth look angle (deg)";
-  Real Azr =(p_sat_topo[2]*v_sat_topo[1]-p_sat_topo[1]*v_sat_topo[2])/(pow(p_sat_topo[1],2) + pow(p_sat_topo[2],2))^2"Azimuth look angle rate (deg/min)";
+  Real Az = atan(p_sat_topo[1]/p_sat_topo[2])*180/Modelica.Constants.pi "Azimuth look angle (deg)";
+  Real Azr =(p_sat_topo[2]*v_sat_topo[1]-p_sat_topo[1]*v_sat_topo[2])/((p_sat_topo[1]^2) +(p_sat_topo[2]^2))^2"Azimuth look angle rate (deg/min)";
   
-  Real El = atan(p_sat_topo[3],sqrt(p_sat_topo[1]^2 +p_sat_topo[2]^2))*180/Modelica.Constants.pi "Elevation look angle (deg)";
-  Real Elr =((pow(p_sat_topo[1],2) + pow(p_sat_topo[2],2))*v_sat_topo[3]-((p_sat_topo[3])/(pow(p_sat_topo[1],2) + pow(p_sat_topo[2],2)))*(p_sat_topo[1]*v_sat_topo[1]+p_sat_topo[2]*v_sat_topo[2]))*(1/(pow(p_sat_topo[1],2) + pow(p_sat_topo[2],2)+pow(p_sat_topo[3],2))^2)"Elevation look angle rate (deg/min)"; 
+  Real El = atan(p_sat_topo[3]/(sqrt(p_sat_topo[1]^2 +p_sat_topo[2]^2)))*180/Modelica.Constants.pi "Elevation look angle (deg)";
+  Real Elr =(((p_sat_topo[1]^2) + (p_sat_topo[2]^2))*v_sat_topo[3]-((p_sat_topo[3])/((p_sat_topo[1]^2) + (p_sat_topo[2]^2)))*(p_sat_topo[1]*v_sat_topo[1]+p_sat_topo[2]*v_sat_topo[2]))*(1/((p_sat_topo[1]^2) + (p_sat_topo[2]^2)+(p_sat_topo[3]^2))^2)"Elevation look angle rate (deg/min)"; 
   algorithm
  Azimuth :=Az;
    Elevation := El;
