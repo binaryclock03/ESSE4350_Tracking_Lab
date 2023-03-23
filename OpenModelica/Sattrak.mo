@@ -63,9 +63,9 @@ package Sattrak
   end Satellite;
 
   model Sat_Test
-   Sattrak.Satellite MyTest(tstart=26131., M0=41.2839 , N0=2.00563995, eccn=.0066173, Ndot2= 0, Nddot6=0., i=55.5538, RAAN0=144.8123, w0=51.6039);
-   //ARO coords
-   Sattrak.GndStn GndTest(stn_long=45.95550333333333 ,stn_lat=281.9269597222222 ,stn_elev=260.42);
+    Sattrak.Satellite MyTest(tstart=26131., M0=41.2839 , N0=2.00563995, eccn=.0066173, Ndot2= 0, Nddot6=0., i=55.5538, RAAN0=144.8123, w0=51.6039);
+    //ARO coords
+    Sattrak.GndStn GndTest(stn_long=281.9269597222222 ,stn_lat=45.95550333333333 ,stn_elev=260.42);
    
     Real r "Sat radial distance (km)";
     Real theta "true anomaly (deg)";
@@ -123,21 +123,28 @@ package Sattrak
    Real b[3] "2nd row of TM";
    Real c[3] "3rd row of TM";
    Real N_lat "Earth ellipsoidal radius of curvature of the meridian";
+   Real stn_lonR;
+   Real stn_latR;
    
   equation
+  stn_lonR = stn_long*d2r;
+  stn_latR = stn_lat*d2r;
+  
   f= 1/298.25223563;
   e=sqrt(2*f-f^2);
   
-  a= {-sin(stn_long*d2r),cos(stn_long*d2r),0} "first row";
+  a= {-sin(stn_lonR),cos(stn_lonR),0} "first row";
   
-  b={-cos(stn_long*d2r)*sin(stn_lat*d2r), -sin(stn_long*d2r)*sin(stn_lat*d2r),cos(stn_lat*d2r)} "Second row";
+  b={-cos(stn_lonR)*sin(stn_latR), -sin(stn_lonR)*sin(stn_latR),cos(stn_latR)} "Second row";
   
-  c={cos(stn_long*d2r)*cos(stn_lat*d2r), sin(stn_long*d2r)*cos(stn_lat*d2r),sin(stn_lat*d2r)} "third row";
+  c={cos(stn_lonR)*cos(stn_latR), sin(stn_lonR)*cos(stn_latR),sin(stn_latR)} "third row";
   
   
-   N_lat = Re/sqrt(1-e^2*sin(stn_lat)^2)"Earth ellipsoidal radius of curvature of the meridian";
+   N_lat = Re/sqrt(1-e^2*sin(stn_latR)^2)"Earth ellipsoidal radius of curvature of the meridian";
    
-   p_stn_ECF= {(N_lat + stn_elev)*cos(stn_lat)*cos(stn_long),(N_lat + stn_elev)*cos(stn_lat)*sin(stn_long),((1-e^2)*N_lat + stn_elev)*sin(stn_lat)}"ECF cartesian coordinates of tracking station";
+   p_stn_ECF[1] = (N_lat + stn_elev)*cos(stn_latR)*cos(stn_lonR);
+   p_stn_ECF[2] = (N_lat + stn_elev)*cos(stn_latR)*sin(stn_lonR);
+   p_stn_ECF[3] = ((1-e^2)*N_lat + stn_elev)*sin(stn_latR)"ECF cartesian coordinates of tracking station";
   
   
   TM[1,1:3]=a;
