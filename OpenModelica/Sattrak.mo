@@ -65,7 +65,7 @@ package Sattrak
   model Sat_Test
     Sattrak.Satellite MyTest(tstart=26131., M0=41.2839 , N0=2.00563995, eccn=.0066173, Ndot2= 0, Nddot6=0., i=55.5538, RAAN0=144.8123, w0=51.6039);
     //ARO coords
-    Sattrak.GndStn GndTest(stn_long=281.9269597222222 ,stn_lat=45.95550333333333 ,stn_elev=260.42);
+    Sattrak.GndStn GndTest(stn_long=281.9269597222222 ,stn_lat=45.95550333333333 ,stn_elev= 0.26042);
    
     Real r "Sat radial distance (km)";
     Real theta "true anomaly (deg)";
