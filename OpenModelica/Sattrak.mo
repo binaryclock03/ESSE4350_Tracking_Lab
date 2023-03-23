@@ -64,8 +64,8 @@ package Sattrak
 
   model Sat_Test
     Sattrak.Satellite MyTest(tstart=26131., M0=41.2839 , N0=2.00563995, eccn=.0066173, Ndot2= 0, Nddot6=0., i=55.5538, RAAN0=144.8123, w0=51.6039);
-    //ARO coords
     Sattrak.GndStn GndTest(stn_long=281.9269597222222 ,stn_lat=45.95550333333333 ,stn_elev= 0.26042);
+    //ARO coords
    
     Real r "Sat radial distance (km)";
     Real theta "true anomaly (deg)";
@@ -78,12 +78,14 @@ package Sattrak
     Real v_sat_ECF[3] "velocity of sat in ECF (km/s)";
     Real p_sat_topo[3]"Position of satellite relative to station, topo coords (km)";
     Real v_sat_topo[3]"Velocity of satellite relative to station, topo coords(km/s)";
-   
+    Real p_stn_ECF[3];
+    
     Real Azimuth "Azimuth look angle (deg)";
     Real Elevation "Elevation look angle (deg)";
     Real Azrate "Azimuth look angle (deg/min)";
     Real Elrate "Elevation look angle (deg/min)";
     Real Rrate "Range rate to dish (km/s)";
+    
     
     Real days = 8483;
     Real hours =time/3600;
@@ -100,6 +102,8 @@ package Sattrak
    
    (p_sat_topo, v_sat_topo) = Range_ECF2topo(p_stn_ECF=GndTest.p_stn_ECF, p_sat_ECF=p_sat_ECF, v_sat_ECF=v_sat_ECF, TM=GndTest.TM);
    
+   p_stn_ECF=GndTest.p_stn_ECF;
+   
   (Azimuth,Elevation,Azrate,Elrate,Rrate)= Range_topo2look_angles(stn_long=GndTest.stn_long, stn_lat=GndTest.stn_lat, stn_elev=GndTest.stn_elev, p_sat_topo=p_sat_topo, v_sat_topo=v_sat_topo);
   
     annotation(
@@ -113,19 +117,18 @@ package Sattrak
    constant Real d2r = Modelica.Constants.D2R "Degrees to radians";
    parameter Real stn_long "Station longitude (degE)";
    parameter Real stn_lat "Station latitude (degN)";
-   parameter Real stn_elev "Station elevation (m)";
+   parameter Real stn_elev "Station elevation (km)";
    Real f "Earth reference ellipsoid flattening";
    Real e "ellipsoidal eccentricity";
    Real p_stn_ECF[3] "Station coordinates in ECF (km)";
+   Real p_stn_ECF1[3] "Station coordinates in ECF (km)";
    Real TM[3,3] "Transform matrix from ECF to topo";
    Real Re=6378.137 "earth radius km";
    Real a[3] "1st row of TM";
    Real b[3] "2nd row of TM";
    Real c[3] "3rd row of TM";
    Real N_lat "Earth ellipsoidal radius of curvature of the meridian";
-   Real stn_lonR;
-   Real stn_latR;
-   
+   Real R[3,3];
   equation
   stn_lonR = stn_long*d2r;
   stn_latR = stn_lat*d2r;
@@ -140,16 +143,18 @@ package Sattrak
   c={cos(stn_lonR)*cos(stn_latR), sin(stn_lonR)*cos(stn_latR),sin(stn_latR)} "third row";
   
   
-   N_lat = Re/sqrt(1-e^2*sin(stn_latR)^2)"Earth ellipsoidal radius of curvature of the meridian";
+   TM[1,1:3]=a;
+   N_lat = Re/sqrt(1-(e^2)*(sin(stn_lat*d2r))^2)"Earth ellipsoidal radius of curvature of the meridian";
+   TM[2,1:3]=b;
+   TM[3,1:3]=c;
    
-   p_stn_ECF[1] = (N_lat + stn_elev)*cos(stn_latR)*cos(stn_lonR);
-   p_stn_ECF[2] = (N_lat + stn_elev)*cos(stn_latR)*sin(stn_lonR);
-   p_stn_ECF[3] = ((1-e^2)*N_lat + stn_elev)*sin(stn_latR)"ECF cartesian coordinates of tracking station";
+   p_stn_ECF1={(N_lat + stn_elev)*cos(stn_lat*d2r)*cos(stn_long*d2r),(N_lat + stn_elev)*cos(stn_lat*d2r)*sin(stn_long*d2r),((1-e^2)*N_lat + stn_elev)*sin(stn_lat*d2r)} "ECF cartesian coordinates of tracking station";
   
   
-  TM[1,1:3]=a;
-  TM[2,1:3]=b;
-  TM[3,1:3]=c;
+  R[1,1:3]= { cos(182.199*d2r),  sin(182.199*d2r),  0 };
+  R[2,1:3]={-sin(182.199*d2r), cos(182.199*d2r),  0            };
+  R[3,1:3]={ 0,             0,             1            };
+  p_stn_ECF = transpose(R)*p_stn_ECF1;
   end GndStn;
 
   function sat_ECI"Converts Peri-focal coordinates to ECI"
@@ -183,6 +188,7 @@ package Sattrak
    
    output Real p_ECF[3] "Position vector in ECF coordinates (km)";
    output Real v_ECF[3] "Relative Velocity vector in ECF coordinates (km/s)";
+   
    protected
    
   
@@ -190,11 +196,11 @@ package Sattrak
   constant Real d2r = Modelica.Constants.D2R "Degrees to radians";
   
   
-  Real TM[3,3] = axesRotations(sequence={3, 1, 3}, angles={ang*d2r, 0, 0});
+  Real TM1[3,3] = axesRotations(sequence={3, 1, 3}, angles={ang*d2r, 0, 0});
   
   algorithm
-  p_ECF:= resolve2(TM,p_ECI );
-  v_ECF:= resolve2(TM,v_ECI );
+  p_ECF:= resolve2(TM1,p_ECI );
+  v_ECF:= resolve2(TM1,v_ECI );
   
   end sat_ECF;
 
