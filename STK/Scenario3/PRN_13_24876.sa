@@ -155,29 +155,15 @@ BEGIN Satellite
 
     END Eclipse
 
-    BEGIN Extensions
+    BEGIN RealTimeDef
 
-        BEGIN SaEOIR
-            BEGIN StageShape
-                StageName		 Component1
-                Shape		 Sphere
-                A		 1
-                B		 1
-                C		 1
-                CustomMeshModelFile		 EOIR_Databases\PropertyFiles\sample_custom_mesh.obj
-                TargetSignatureFile		 EOIR_Databases\PropertyFiles\sample_target_signature.tsf
-                MaterialSpecification		 SingleElement
-                BEGIN MaterialElement
-                    MaterialElementLabel		 Single Material Element
-                    Temperature		 273
-                    Reflectance		 0.5
-                    Material		 GrayBody
-                    ThermalMode		 Constant
-                    TemperatureProfileFile		 EOIR_Databases\PropertyFiles\sample_time_profile.tpf
-                    ReflectanceFunctionFile		 EOIR_Databases\PropertyFiles\sample_material.srf
-                END MaterialElement
-            END StageShape
-        END SaEOIR
+        HistoryDuration		  1.8000000000000000e+03
+        LookAheadDuration		  1.8000000000000000e+03
+
+    END RealTimeDef
+
+
+    BEGIN Extensions
 
         BEGIN ClsApp
             RangeConstraint		 5000

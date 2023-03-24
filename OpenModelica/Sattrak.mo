@@ -65,8 +65,8 @@ package Sattrak
   model Sat_Test
    Sattrak.Satellite MyTest(tstart=26131., M0=41.2839 , N0=2.00563995, eccn=.0066173, Ndot2= 0, Nddot6=0., i=55.5538, RAAN0=144.8123, w0=51.6039);
    //ARO coords
-   Sattrak.GndStn GndTest(stn_long=281.9269597222222 ,stn_lat=45.95550333333333 ,stn_elev=260.42);
-   
+   Sattrak.GndStn GndTest(stn_long=281.9269597222222 ,stn_lat=45.95550333333333 ,stn_elev=0.26042);
+  
     Real r "Sat radial distance (km)";
     Real theta "true anomaly (deg)";
     Real E "Eccentric anomaly (deg";
@@ -121,14 +121,12 @@ package Sattrak
    Real f "Earth reference ellipsoid flattening";
    Real e "ellipsoidal eccentricity";
    Real p_stn_ECF[3] "Station coordinates in ECF (km)";
-   Real p_stn_ECF1[3] "Station coordinates in ECF (km)";
    Real TM[3,3] "Transform matrix from ECF to topo";
    Real Re=6378.137 "earth radius km";
    Real a[3] "1st row of TM";
    Real b[3] "2nd row of TM";
    Real c[3] "3rd row of TM";
    Real N_lat "Earth ellipsoidal radius of curvature of the meridian";
-   Real R[3,3];
   equation
   f= 1/298.25223563;
   e=sqrt(2*f-f^2);
@@ -145,13 +143,7 @@ package Sattrak
    TM[2,1:3]=b;
    TM[3,1:3]=c;
    
-   p_stn_ECF1={(N_lat + stn_elev)*cos(stn_lat*d2r)*cos(stn_long*d2r),(N_lat + stn_elev)*cos(stn_lat*d2r)*sin(stn_long*d2r),((1-e^2)*N_lat + stn_elev)*sin(stn_lat*d2r)} "ECF cartesian coordinates of tracking station";
-  
-  
-  R[1,1:3]= { cos(182.199*d2r),  sin(182.199*d2r),  0 };
-  R[2,1:3]={-sin(182.199*d2r), cos(182.199*d2r),  0            };
-  R[3,1:3]={ 0,             0,             1            };
-  p_stn_ECF = transpose(R)*p_stn_ECF1;
+   p_stn_ECF={(N_lat + stn_elev)*cos(stn_lat*d2r)*cos(stn_long*d2r),(N_lat + stn_elev)*cos(stn_lat*d2r)*sin(stn_long*d2r),((1-e^2)*N_lat + stn_elev)*sin(stn_lat*d2r)} "ECF cartesian coordinates of tracking station";
   end GndStn;
 
   function sat_ECI"Converts Peri-focal coordinates to ECI"
