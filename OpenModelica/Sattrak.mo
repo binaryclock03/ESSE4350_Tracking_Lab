@@ -34,7 +34,7 @@ package Sattrak
     
     RAAN=RAAN0 +(-(((3*(J2)*((Re)^2)*cos(i))/(2*(a^2)*(1-eccn^2)^2))*((N*360.)/86400.)))*(time-tstart);
     w=w0 +((3*(J2)*((Re)^2)*(5*cos(i)^2-1))/(2*(a^2)*(1-eccn^2)^2))*((N*360.)/86400.)*(time-tstart);
-  equation
+equation
     M*d2r = E*d2r - eccn*sin(E*d2r);
     tan(theta*d2r/2.) = sqrt((1 + eccn)/(1 - eccn))*tan(E*d2r/2.);
     a^3*(N*2*pi/86400.)^2 = 398600.4;
@@ -61,9 +61,9 @@ package Sattrak
   end Satellite;
 
   model Sat_Test
-   Sattrak.Satellite MyTest(tstart=26131., M0=41.2839 , N0=2.00563995, eccn=.0066173, Ndot2= 0, Nddot6=0., i=55.5538, RAAN0=144.8123, w0=51.6039);
+    Sattrak.Satellite satellite(tstart=26131., M0=41.2839 , N0=2.00563995, eccn=.0066173, Ndot2= 0, Nddot6=0., i=55.5538, RAAN0=144.8123, w0=51.6039);
    //ARO coords
-   Sattrak.GndStn GndTest(stn_long=281.9269597222222 ,stn_lat=45.95550333333333 ,stn_elev=0.26042);
+    Sattrak.GndStn ground_station(stn_long=281.9269597222222 ,stn_lat=45.95550333333333 ,stn_elev=0.26042);
   
     Real r "Sat radial distance (km)";
     Real theta "true anomaly (deg)";
