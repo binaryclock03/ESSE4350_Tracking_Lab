@@ -1,0 +1,484 @@
+                                                                                                                                                                                  27 Mar 2023 11:36:02
+Chain-Chain2
+
+
+                                          Strand Name                                                 Start Time (UTCG)       Start Azimuth (deg)    Start Elevation (deg)        Stop Time (UTCG)    
+----------------------------------------------------------------------------------------------    ------------------------    -------------------    ---------------------    ------------------------
+Satellite/PRN_01_37753/Transmitter/GPSTx to Facility/Algonquin/Sensor/Dish/Receiver/LBand-Rx      27 Mar 2023 16:00:00.000                310.509                  -76.325    27 Mar 2023 16:30:00.000
+Satellite/PRN_07_32711/Transmitter/GPSTx6 to Facility/Algonquin/Sensor/Dish/Receiver/LBand-Rx     27 Mar 2023 16:00:00.000                300.205                  -87.289    27 Mar 2023 16:30:00.000
+Satellite/PRN_09_40105/Transmitter/GPSTx8 to Facility/Algonquin/Sensor/Dish/Receiver/LBand-Rx     27 Mar 2023 16:00:00.000                238.307                  -77.022    27 Mar 2023 16:30:00.000
+Satellite/PRN_13_24876/Transmitter/GPSTx12 to Facility/Algonquin/Sensor/Dish/Receiver/LBand-Rx    27 Mar 2023 16:00:00.000                318.640                  -76.118    27 Mar 2023 16:30:00.000
+Satellite/PRN_16_27663/Transmitter/GPSTx15 to Facility/Algonquin/Sensor/Dish/Receiver/LBand-Rx    27 Mar 2023 16:00:00.000                169.230                  -76.675    27 Mar 2023 16:30:00.000
+Satellite/PRN_21_27704/Transmitter/GPSTx20 to Facility/Algonquin/Sensor/Dish/Receiver/LBand-Rx    27 Mar 2023 16:00:00.000                297.945                  -77.852    27 Mar 2023 16:30:00.000
+Satellite/PRN_14_46826/Transmitter/GPSTx13 to Facility/Algonquin/Sensor/Dish/Receiver/LBand-Rx    27 Mar 2023 16:00:00.000                 10.354                  -77.076    27 Mar 2023 16:30:00.000
+Satellite/PRN_30_39533/Transmitter/GPSTx27 to Facility/Algonquin/Sensor/Dish/Receiver/LBand-Rx    27 Mar 2023 16:00:00.000                346.360                  -80.064    27 Mar 2023 16:30:00.000
+Satellite/PRN_27_39166/Transmitter/GPSTx25 to Facility/Algonquin/Sensor/Dish/Receiver/LBand-Rx    27 Mar 2023 16:00:00.000                189.821                  -78.647    27 Mar 2023 16:30:00.000
+Satellite/PRN_08_40730/Transmitter/GPSTx7 to Facility/Algonquin/Sensor/Dish/Receiver/LBand-Rx     27 Mar 2023 16:00:00.000                205.271                  -85.259    27 Mar 2023 16:30:00.000
+Satellite/PRN_04_43873/Transmitter/GPSTx3 to Facility/Algonquin/Sensor/Dish/Receiver/LBand-Rx     27 Mar 2023 16:00:00.000                225.190                  -76.120    27 Mar 2023 16:07:47.060
+Satellite/PRN_17_28874/Transmitter/GPSTx16 to Facility/Algonquin/Sensor/Dish/Receiver/LBand-Rx    27 Mar 2023 16:12:19.887                353.053                  -76.024    27 Mar 2023 16:30:00.000
+
+
+
+Strand 1
+--------
+
+                  Strand Name1                     Carrier Power at Rcvr Input1 (dBW)    Freq. Doppler Shift1 (Hz)
+-----------------------------------------------    ----------------------------------    -------------------------
+PRN_01_37753/GPSTx to Algonquin/Dish/LBand-Rx                               -9999.990                     3942.536
+PRN_01_37753/GPSTx to Algonquin/Dish/LBand-Rx                               -9999.990                     3942.629
+PRN_01_37753/GPSTx to Algonquin/Dish/LBand-Rx                               -9999.990                     3942.304
+PRN_01_37753/GPSTx to Algonquin/Dish/LBand-Rx                               -9999.990                     3941.560
+PRN_01_37753/GPSTx to Algonquin/Dish/LBand-Rx                               -9999.990                     3940.393
+PRN_01_37753/GPSTx to Algonquin/Dish/LBand-Rx                               -9999.990                     3938.803
+PRN_01_37753/GPSTx to Algonquin/Dish/LBand-Rx                               -9999.990                     3936.787
+PRN_01_37753/GPSTx to Algonquin/Dish/LBand-Rx                               -9999.990                     3934.342
+PRN_01_37753/GPSTx to Algonquin/Dish/LBand-Rx                               -9999.990                     3931.468
+PRN_01_37753/GPSTx to Algonquin/Dish/LBand-Rx                               -9999.990                     3928.163
+PRN_01_37753/GPSTx to Algonquin/Dish/LBand-Rx                               -9999.990                     3924.424
+PRN_01_37753/GPSTx to Algonquin/Dish/LBand-Rx                               -9999.990                     3920.250
+PRN_01_37753/GPSTx to Algonquin/Dish/LBand-Rx                               -9999.990                     3915.639
+PRN_01_37753/GPSTx to Algonquin/Dish/LBand-Rx                               -9999.990                     3910.589
+PRN_01_37753/GPSTx to Algonquin/Dish/LBand-Rx                               -9999.990                     3905.099
+PRN_01_37753/GPSTx to Algonquin/Dish/LBand-Rx                               -9999.990                     3899.168
+PRN_01_37753/GPSTx to Algonquin/Dish/LBand-Rx                               -9999.990                     3892.793
+PRN_01_37753/GPSTx to Algonquin/Dish/LBand-Rx                               -9999.990                     3885.973
+PRN_01_37753/GPSTx to Algonquin/Dish/LBand-Rx                               -9999.990                     3878.707
+PRN_01_37753/GPSTx to Algonquin/Dish/LBand-Rx                               -9999.990                     3870.993
+PRN_01_37753/GPSTx to Algonquin/Dish/LBand-Rx                               -9999.990                     3862.830
+PRN_01_37753/GPSTx to Algonquin/Dish/LBand-Rx                               -9999.990                     3854.216
+PRN_01_37753/GPSTx to Algonquin/Dish/LBand-Rx                               -9999.990                     3845.151
+PRN_01_37753/GPSTx to Algonquin/Dish/LBand-Rx                               -9999.990                     3835.633
+PRN_01_37753/GPSTx to Algonquin/Dish/LBand-Rx                               -9999.990                     3825.662
+PRN_01_37753/GPSTx to Algonquin/Dish/LBand-Rx                               -9999.990                     3815.235
+PRN_01_37753/GPSTx to Algonquin/Dish/LBand-Rx                               -9999.990                     3804.352
+PRN_01_37753/GPSTx to Algonquin/Dish/LBand-Rx                               -9999.990                     3793.012
+PRN_01_37753/GPSTx to Algonquin/Dish/LBand-Rx                               -9999.990                     3781.214
+PRN_01_37753/GPSTx to Algonquin/Dish/LBand-Rx                               -9999.990                     3768.958
+PRN_01_37753/GPSTx to Algonquin/Dish/LBand-Rx                                -187.186                     3756.242
+
+Strand 2
+--------
+
+Strand 3
+--------
+
+Strand 4
+--------
+
+                  Strand Name1                     Carrier Power at Rcvr Input1 (dBW)    Freq. Doppler Shift1 (Hz)
+-----------------------------------------------    ----------------------------------    -------------------------
+PRN_04_43873/GPSTx3 to Algonquin/Dish/LBand-Rx                               -188.420                    -3669.736
+PRN_04_43873/GPSTx3 to Algonquin/Dish/LBand-Rx                               -188.436                    -3662.646
+PRN_04_43873/GPSTx3 to Algonquin/Dish/LBand-Rx                               -188.453                    -3655.221
+PRN_04_43873/GPSTx3 to Algonquin/Dish/LBand-Rx                               -188.469                    -3647.462
+PRN_04_43873/GPSTx3 to Algonquin/Dish/LBand-Rx                               -188.484                    -3639.371
+PRN_04_43873/GPSTx3 to Algonquin/Dish/LBand-Rx                               -188.500                    -3630.950
+PRN_04_43873/GPSTx3 to Algonquin/Dish/LBand-Rx                               -188.515                    -3622.202
+PRN_04_43873/GPSTx3 to Algonquin/Dish/LBand-Rx                               -188.529                    -3613.127
+PRN_04_43873/GPSTx3 to Algonquin/Dish/LBand-Rx                               -188.540                    -3605.783
+
+Strand 5
+--------
+
+Strand 6
+--------
+
+Strand 7
+--------
+
+                  Strand Name1                     Carrier Power at Rcvr Input1 (dBW)    Freq. Doppler Shift1 (Hz)
+-----------------------------------------------    ----------------------------------    -------------------------
+PRN_07_32711/GPSTx6 to Algonquin/Dish/LBand-Rx                              -9999.990                      477.682
+PRN_07_32711/GPSTx6 to Algonquin/Dish/LBand-Rx                              -9999.990                      444.638
+PRN_07_32711/GPSTx6 to Algonquin/Dish/LBand-Rx                              -9999.990                      411.430
+PRN_07_32711/GPSTx6 to Algonquin/Dish/LBand-Rx                              -9999.990                      378.059
+PRN_07_32711/GPSTx6 to Algonquin/Dish/LBand-Rx                              -9999.990                      344.531
+PRN_07_32711/GPSTx6 to Algonquin/Dish/LBand-Rx                              -9999.990                      310.849
+PRN_07_32711/GPSTx6 to Algonquin/Dish/LBand-Rx                              -9999.990                      277.017
+PRN_07_32711/GPSTx6 to Algonquin/Dish/LBand-Rx                              -9999.990                      243.040
+PRN_07_32711/GPSTx6 to Algonquin/Dish/LBand-Rx                              -9999.990                      208.922
+PRN_07_32711/GPSTx6 to Algonquin/Dish/LBand-Rx                              -9999.990                      174.667
+PRN_07_32711/GPSTx6 to Algonquin/Dish/LBand-Rx                              -9999.990                      140.279
+PRN_07_32711/GPSTx6 to Algonquin/Dish/LBand-Rx                              -9999.990                      105.763
+PRN_07_32711/GPSTx6 to Algonquin/Dish/LBand-Rx                              -9999.990                       71.123
+PRN_07_32711/GPSTx6 to Algonquin/Dish/LBand-Rx                              -9999.990                       36.364
+PRN_07_32711/GPSTx6 to Algonquin/Dish/LBand-Rx                              -9999.990                        1.490
+PRN_07_32711/GPSTx6 to Algonquin/Dish/LBand-Rx                              -9999.990                      -33.493
+PRN_07_32711/GPSTx6 to Algonquin/Dish/LBand-Rx                              -9999.990                      -68.582
+PRN_07_32711/GPSTx6 to Algonquin/Dish/LBand-Rx                              -9999.990                     -103.772
+PRN_07_32711/GPSTx6 to Algonquin/Dish/LBand-Rx                              -9999.990                     -139.057
+PRN_07_32711/GPSTx6 to Algonquin/Dish/LBand-Rx                              -9999.990                     -174.433
+PRN_07_32711/GPSTx6 to Algonquin/Dish/LBand-Rx                              -9999.990                     -209.895
+PRN_07_32711/GPSTx6 to Algonquin/Dish/LBand-Rx                              -9999.990                     -245.438
+PRN_07_32711/GPSTx6 to Algonquin/Dish/LBand-Rx                              -9999.990                     -281.058
+PRN_07_32711/GPSTx6 to Algonquin/Dish/LBand-Rx                              -9999.990                     -316.748
+PRN_07_32711/GPSTx6 to Algonquin/Dish/LBand-Rx                              -9999.990                     -352.504
+PRN_07_32711/GPSTx6 to Algonquin/Dish/LBand-Rx                              -9999.990                     -388.321
+PRN_07_32711/GPSTx6 to Algonquin/Dish/LBand-Rx                              -9999.990                     -424.194
+PRN_07_32711/GPSTx6 to Algonquin/Dish/LBand-Rx                              -9999.990                     -460.117
+PRN_07_32711/GPSTx6 to Algonquin/Dish/LBand-Rx                              -9999.990                     -496.085
+PRN_07_32711/GPSTx6 to Algonquin/Dish/LBand-Rx                              -9999.990                     -532.093
+PRN_07_32711/GPSTx6 to Algonquin/Dish/LBand-Rx                              -9999.990                     -568.136
+
+Strand 8
+--------
+
+                  Strand Name1                     Carrier Power at Rcvr Input1 (dBW)    Freq. Doppler Shift1 (Hz)
+-----------------------------------------------    ----------------------------------    -------------------------
+PRN_08_40730/GPSTx7 to Algonquin/Dish/LBand-Rx                              -9999.990                    -1117.704
+PRN_08_40730/GPSTx7 to Algonquin/Dish/LBand-Rx                              -9999.990                    -1151.953
+PRN_08_40730/GPSTx7 to Algonquin/Dish/LBand-Rx                              -9999.990                    -1185.963
+PRN_08_40730/GPSTx7 to Algonquin/Dish/LBand-Rx                              -9999.990                    -1219.729
+PRN_08_40730/GPSTx7 to Algonquin/Dish/LBand-Rx                              -9999.990                    -1253.250
+PRN_08_40730/GPSTx7 to Algonquin/Dish/LBand-Rx                              -9999.990                    -1286.521
+PRN_08_40730/GPSTx7 to Algonquin/Dish/LBand-Rx                              -9999.990                    -1319.540
+PRN_08_40730/GPSTx7 to Algonquin/Dish/LBand-Rx                              -9999.990                    -1352.303
+PRN_08_40730/GPSTx7 to Algonquin/Dish/LBand-Rx                              -9999.990                    -1384.808
+PRN_08_40730/GPSTx7 to Algonquin/Dish/LBand-Rx                              -9999.990                    -1417.052
+PRN_08_40730/GPSTx7 to Algonquin/Dish/LBand-Rx                              -9999.990                    -1449.032
+PRN_08_40730/GPSTx7 to Algonquin/Dish/LBand-Rx                              -9999.990                    -1480.745
+PRN_08_40730/GPSTx7 to Algonquin/Dish/LBand-Rx                              -9999.990                    -1512.190
+PRN_08_40730/GPSTx7 to Algonquin/Dish/LBand-Rx                              -9999.990                    -1543.363
+PRN_08_40730/GPSTx7 to Algonquin/Dish/LBand-Rx                              -9999.990                    -1574.263
+PRN_08_40730/GPSTx7 to Algonquin/Dish/LBand-Rx                              -9999.990                    -1604.887
+PRN_08_40730/GPSTx7 to Algonquin/Dish/LBand-Rx                              -9999.990                    -1635.232
+PRN_08_40730/GPSTx7 to Algonquin/Dish/LBand-Rx                              -9999.990                    -1665.298
+PRN_08_40730/GPSTx7 to Algonquin/Dish/LBand-Rx                              -9999.990                    -1695.082
+PRN_08_40730/GPSTx7 to Algonquin/Dish/LBand-Rx                              -9999.990                    -1724.582
+PRN_08_40730/GPSTx7 to Algonquin/Dish/LBand-Rx                               -186.857                    -1753.796
+PRN_08_40730/GPSTx7 to Algonquin/Dish/LBand-Rx                               -186.834                    -1782.723
+PRN_08_40730/GPSTx7 to Algonquin/Dish/LBand-Rx                               -186.812                    -1811.361
+PRN_08_40730/GPSTx7 to Algonquin/Dish/LBand-Rx                               -186.790                    -1839.709
+PRN_08_40730/GPSTx7 to Algonquin/Dish/LBand-Rx                               -186.768                    -1867.765
+PRN_08_40730/GPSTx7 to Algonquin/Dish/LBand-Rx                               -186.747                    -1895.528
+PRN_08_40730/GPSTx7 to Algonquin/Dish/LBand-Rx                               -186.726                    -1922.997
+PRN_08_40730/GPSTx7 to Algonquin/Dish/LBand-Rx                               -186.706                    -1950.170
+PRN_08_40730/GPSTx7 to Algonquin/Dish/LBand-Rx                               -186.686                    -1977.047
+PRN_08_40730/GPSTx7 to Algonquin/Dish/LBand-Rx                               -186.667                    -2003.627
+PRN_08_40730/GPSTx7 to Algonquin/Dish/LBand-Rx                              -9999.990                    -2029.909
+
+Strand 9
+--------
+
+                  Strand Name1                     Carrier Power at Rcvr Input1 (dBW)    Freq. Doppler Shift1 (Hz)
+-----------------------------------------------    ----------------------------------    -------------------------
+PRN_09_40105/GPSTx8 to Algonquin/Dish/LBand-Rx                               -187.396                    -3334.933
+PRN_09_40105/GPSTx8 to Algonquin/Dish/LBand-Rx                               -187.422                    -3345.185
+PRN_09_40105/GPSTx8 to Algonquin/Dish/LBand-Rx                               -187.448                    -3355.021
+PRN_09_40105/GPSTx8 to Algonquin/Dish/LBand-Rx                               -187.473                    -3364.444
+PRN_09_40105/GPSTx8 to Algonquin/Dish/LBand-Rx                               -187.499                    -3373.453
+PRN_09_40105/GPSTx8 to Algonquin/Dish/LBand-Rx                               -187.525                    -3382.049
+PRN_09_40105/GPSTx8 to Algonquin/Dish/LBand-Rx                               -187.551                    -3390.232
+PRN_09_40105/GPSTx8 to Algonquin/Dish/LBand-Rx                               -187.576                    -3398.005
+PRN_09_40105/GPSTx8 to Algonquin/Dish/LBand-Rx                               -187.602                    -3405.367
+PRN_09_40105/GPSTx8 to Algonquin/Dish/LBand-Rx                               -187.628                    -3412.318
+PRN_09_40105/GPSTx8 to Algonquin/Dish/LBand-Rx                               -187.653                    -3418.862
+PRN_09_40105/GPSTx8 to Algonquin/Dish/LBand-Rx                               -187.678                    -3424.997
+PRN_09_40105/GPSTx8 to Algonquin/Dish/LBand-Rx                               -187.703                    -3430.725
+PRN_09_40105/GPSTx8 to Algonquin/Dish/LBand-Rx                               -187.728                    -3436.048
+PRN_09_40105/GPSTx8 to Algonquin/Dish/LBand-Rx                               -187.753                    -3440.966
+PRN_09_40105/GPSTx8 to Algonquin/Dish/LBand-Rx                               -187.778                    -3445.481
+PRN_09_40105/GPSTx8 to Algonquin/Dish/LBand-Rx                               -187.802                    -3449.593
+PRN_09_40105/GPSTx8 to Algonquin/Dish/LBand-Rx                               -187.827                    -3453.305
+PRN_09_40105/GPSTx8 to Algonquin/Dish/LBand-Rx                               -187.851                    -3456.617
+PRN_09_40105/GPSTx8 to Algonquin/Dish/LBand-Rx                               -187.875                    -3459.530
+PRN_09_40105/GPSTx8 to Algonquin/Dish/LBand-Rx                               -102.885                    -3462.046
+PRN_09_40105/GPSTx8 to Algonquin/Dish/LBand-Rx                               -102.908                    -3464.167
+PRN_09_40105/GPSTx8 to Algonquin/Dish/LBand-Rx                               -102.932                    -3465.893
+PRN_09_40105/GPSTx8 to Algonquin/Dish/LBand-Rx                               -102.955                    -3467.227
+PRN_09_40105/GPSTx8 to Algonquin/Dish/LBand-Rx                               -102.977                    -3468.170
+PRN_09_40105/GPSTx8 to Algonquin/Dish/LBand-Rx                               -103.000                    -3468.723
+PRN_09_40105/GPSTx8 to Algonquin/Dish/LBand-Rx                               -103.022                    -3468.888
+PRN_09_40105/GPSTx8 to Algonquin/Dish/LBand-Rx                               -103.044                    -3468.667
+PRN_09_40105/GPSTx8 to Algonquin/Dish/LBand-Rx                               -103.065                    -3468.061
+PRN_09_40105/GPSTx8 to Algonquin/Dish/LBand-Rx                               -103.087                    -3467.072
+PRN_09_40105/GPSTx8 to Algonquin/Dish/LBand-Rx                               -188.121                    -3465.701
+
+Strand 10
+---------
+
+Strand 11
+---------
+
+Strand 12
+---------
+
+Strand 13
+---------
+
+                  Strand Name1                     Carrier Power at Rcvr Input1 (dBW)    Freq. Doppler Shift1 (Hz)
+-----------------------------------------------    ----------------------------------    -------------------------
+PRN_13_24876/GPSTx12 to Algonquin/Dish/LBand-Rx                              -188.280                     2796.462
+PRN_13_24876/GPSTx12 to Algonquin/Dish/LBand-Rx                              -188.265                     2771.482
+PRN_13_24876/GPSTx12 to Algonquin/Dish/LBand-Rx                              -188.249                     2746.153
+PRN_13_24876/GPSTx12 to Algonquin/Dish/LBand-Rx                              -188.233                     2720.477
+PRN_13_24876/GPSTx12 to Algonquin/Dish/LBand-Rx                              -188.218                     2694.455
+PRN_13_24876/GPSTx12 to Algonquin/Dish/LBand-Rx                              -188.202                     2668.090
+PRN_13_24876/GPSTx12 to Algonquin/Dish/LBand-Rx                              -188.186                     2641.384
+PRN_13_24876/GPSTx12 to Algonquin/Dish/LBand-Rx                              -188.170                     2614.339
+PRN_13_24876/GPSTx12 to Algonquin/Dish/LBand-Rx                              -188.154                     2586.959
+PRN_13_24876/GPSTx12 to Algonquin/Dish/LBand-Rx                              -188.138                     2559.244
+PRN_13_24876/GPSTx12 to Algonquin/Dish/LBand-Rx                              -188.122                     2531.199
+PRN_13_24876/GPSTx12 to Algonquin/Dish/LBand-Rx                              -188.106                     2502.825
+PRN_13_24876/GPSTx12 to Algonquin/Dish/LBand-Rx                              -188.090                     2474.127
+PRN_13_24876/GPSTx12 to Algonquin/Dish/LBand-Rx                              -188.074                     2445.105
+PRN_13_24876/GPSTx12 to Algonquin/Dish/LBand-Rx                              -188.058                     2415.765
+PRN_13_24876/GPSTx12 to Algonquin/Dish/LBand-Rx                              -188.042                     2386.107
+PRN_13_24876/GPSTx12 to Algonquin/Dish/LBand-Rx                              -188.027                     2356.137
+PRN_13_24876/GPSTx12 to Algonquin/Dish/LBand-Rx                              -188.011                     2325.857
+PRN_13_24876/GPSTx12 to Algonquin/Dish/LBand-Rx                              -187.995                     2295.270
+PRN_13_24876/GPSTx12 to Algonquin/Dish/LBand-Rx                              -187.979                     2264.381
+PRN_13_24876/GPSTx12 to Algonquin/Dish/LBand-Rx                              -187.964                     2233.192
+PRN_13_24876/GPSTx12 to Algonquin/Dish/LBand-Rx                              -187.948                     2201.707
+PRN_13_24876/GPSTx12 to Algonquin/Dish/LBand-Rx                              -187.933                     2169.931
+PRN_13_24876/GPSTx12 to Algonquin/Dish/LBand-Rx                              -187.917                     2137.866
+PRN_13_24876/GPSTx12 to Algonquin/Dish/LBand-Rx                              -187.902                     2105.517
+PRN_13_24876/GPSTx12 to Algonquin/Dish/LBand-Rx                              -187.887                     2072.888
+PRN_13_24876/GPSTx12 to Algonquin/Dish/LBand-Rx                              -187.872                     2039.984
+PRN_13_24876/GPSTx12 to Algonquin/Dish/LBand-Rx                              -187.857                     2006.807
+PRN_13_24876/GPSTx12 to Algonquin/Dish/LBand-Rx                              -187.843                     1973.363
+PRN_13_24876/GPSTx12 to Algonquin/Dish/LBand-Rx                              -187.828                     1939.656
+PRN_13_24876/GPSTx12 to Algonquin/Dish/LBand-Rx                             -9999.990                     1905.691
+
+Strand 14
+---------
+
+                  Strand Name1                     Carrier Power at Rcvr Input1 (dBW)    Freq. Doppler Shift1 (Hz)
+-----------------------------------------------    ----------------------------------    -------------------------
+PRN_14_46826/GPSTx13 to Algonquin/Dish/LBand-Rx                              -187.404                     2908.025
+PRN_14_46826/GPSTx13 to Algonquin/Dish/LBand-Rx                              -187.381                     2901.893
+PRN_14_46826/GPSTx13 to Algonquin/Dish/LBand-Rx                              -187.359                     2895.681
+PRN_14_46826/GPSTx13 to Algonquin/Dish/LBand-Rx                              -187.337                     2889.389
+PRN_14_46826/GPSTx13 to Algonquin/Dish/LBand-Rx                              -187.315                     2883.016
+PRN_14_46826/GPSTx13 to Algonquin/Dish/LBand-Rx                              -187.293                     2876.562
+PRN_14_46826/GPSTx13 to Algonquin/Dish/LBand-Rx                              -187.271                     2870.025
+PRN_14_46826/GPSTx13 to Algonquin/Dish/LBand-Rx                              -187.248                     2863.405
+PRN_14_46826/GPSTx13 to Algonquin/Dish/LBand-Rx                              -187.227                     2856.701
+PRN_14_46826/GPSTx13 to Algonquin/Dish/LBand-Rx                              -187.205                     2849.913
+PRN_14_46826/GPSTx13 to Algonquin/Dish/LBand-Rx                              -187.183                     2843.040
+PRN_14_46826/GPSTx13 to Algonquin/Dish/LBand-Rx                              -187.161                     2836.080
+PRN_14_46826/GPSTx13 to Algonquin/Dish/LBand-Rx                              -187.140                     2829.034
+PRN_14_46826/GPSTx13 to Algonquin/Dish/LBand-Rx                              -187.118                     2821.900
+PRN_14_46826/GPSTx13 to Algonquin/Dish/LBand-Rx                              -187.097                     2814.678
+PRN_14_46826/GPSTx13 to Algonquin/Dish/LBand-Rx                              -187.076                     2807.367
+PRN_14_46826/GPSTx13 to Algonquin/Dish/LBand-Rx                              -187.055                     2799.965
+PRN_14_46826/GPSTx13 to Algonquin/Dish/LBand-Rx                              -187.034                     2792.472
+PRN_14_46826/GPSTx13 to Algonquin/Dish/LBand-Rx                              -187.013                     2784.888
+PRN_14_46826/GPSTx13 to Algonquin/Dish/LBand-Rx                              -186.993                     2777.211
+PRN_14_46826/GPSTx13 to Algonquin/Dish/LBand-Rx                             -9999.990                     2769.440
+PRN_14_46826/GPSTx13 to Algonquin/Dish/LBand-Rx                             -9999.990                     2761.575
+PRN_14_46826/GPSTx13 to Algonquin/Dish/LBand-Rx                             -9999.990                     2753.614
+PRN_14_46826/GPSTx13 to Algonquin/Dish/LBand-Rx                             -9999.990                     2745.557
+PRN_14_46826/GPSTx13 to Algonquin/Dish/LBand-Rx                             -9999.990                     2737.403
+PRN_14_46826/GPSTx13 to Algonquin/Dish/LBand-Rx                             -9999.990                     2729.150
+PRN_14_46826/GPSTx13 to Algonquin/Dish/LBand-Rx                             -9999.990                     2720.798
+PRN_14_46826/GPSTx13 to Algonquin/Dish/LBand-Rx                             -9999.990                     2712.346
+PRN_14_46826/GPSTx13 to Algonquin/Dish/LBand-Rx                             -9999.990                     2703.792
+PRN_14_46826/GPSTx13 to Algonquin/Dish/LBand-Rx                             -9999.990                     2695.136
+PRN_14_46826/GPSTx13 to Algonquin/Dish/LBand-Rx                              -186.782                     2686.377
+
+Strand 15
+---------
+
+Strand 16
+---------
+
+                  Strand Name1                     Carrier Power at Rcvr Input1 (dBW)    Freq. Doppler Shift1 (Hz)
+-----------------------------------------------    ----------------------------------    -------------------------
+PRN_16_27663/GPSTx15 to Algonquin/Dish/LBand-Rx                              -102.732                    -3237.285
+PRN_16_27663/GPSTx15 to Algonquin/Dish/LBand-Rx                              -102.754                    -3239.526
+PRN_16_27663/GPSTx15 to Algonquin/Dish/LBand-Rx                              -102.775                    -3241.669
+PRN_16_27663/GPSTx15 to Algonquin/Dish/LBand-Rx                              -102.797                    -3243.715
+PRN_16_27663/GPSTx15 to Algonquin/Dish/LBand-Rx                              -102.818                    -3245.667
+PRN_16_27663/GPSTx15 to Algonquin/Dish/LBand-Rx                              -102.839                    -3247.525
+PRN_16_27663/GPSTx15 to Algonquin/Dish/LBand-Rx                              -102.860                    -3249.291
+PRN_16_27663/GPSTx15 to Algonquin/Dish/LBand-Rx                              -102.881                    -3250.965
+PRN_16_27663/GPSTx15 to Algonquin/Dish/LBand-Rx                              -102.902                    -3252.549
+PRN_16_27663/GPSTx15 to Algonquin/Dish/LBand-Rx                              -102.922                    -3254.044
+PRN_16_27663/GPSTx15 to Algonquin/Dish/LBand-Rx                              -102.943                    -3255.451
+PRN_16_27663/GPSTx15 to Algonquin/Dish/LBand-Rx                              -102.963                    -3256.770
+PRN_16_27663/GPSTx15 to Algonquin/Dish/LBand-Rx                              -102.983                    -3258.004
+PRN_16_27663/GPSTx15 to Algonquin/Dish/LBand-Rx                              -103.003                    -3259.153
+PRN_16_27663/GPSTx15 to Algonquin/Dish/LBand-Rx                              -103.022                    -3260.219
+PRN_16_27663/GPSTx15 to Algonquin/Dish/LBand-Rx                              -103.041                    -3261.201
+PRN_16_27663/GPSTx15 to Algonquin/Dish/LBand-Rx                              -103.061                    -3262.102
+PRN_16_27663/GPSTx15 to Algonquin/Dish/LBand-Rx                              -103.080                    -3262.922
+PRN_16_27663/GPSTx15 to Algonquin/Dish/LBand-Rx                              -103.098                    -3263.662
+PRN_16_27663/GPSTx15 to Algonquin/Dish/LBand-Rx                              -103.117                    -3264.323
+PRN_16_27663/GPSTx15 to Algonquin/Dish/LBand-Rx                              -188.148                    -3264.906
+PRN_16_27663/GPSTx15 to Algonquin/Dish/LBand-Rx                              -188.166                    -3265.412
+PRN_16_27663/GPSTx15 to Algonquin/Dish/LBand-Rx                              -188.184                    -3265.842
+PRN_16_27663/GPSTx15 to Algonquin/Dish/LBand-Rx                              -188.202                    -3266.196
+PRN_16_27663/GPSTx15 to Algonquin/Dish/LBand-Rx                              -188.219                    -3266.476
+PRN_16_27663/GPSTx15 to Algonquin/Dish/LBand-Rx                              -188.236                    -3266.682
+PRN_16_27663/GPSTx15 to Algonquin/Dish/LBand-Rx                              -188.253                    -3266.815
+PRN_16_27663/GPSTx15 to Algonquin/Dish/LBand-Rx                              -188.270                    -3266.876
+PRN_16_27663/GPSTx15 to Algonquin/Dish/LBand-Rx                              -188.287                    -3266.865
+PRN_16_27663/GPSTx15 to Algonquin/Dish/LBand-Rx                              -188.303                    -3266.783
+PRN_16_27663/GPSTx15 to Algonquin/Dish/LBand-Rx                             -9999.990                    -3266.632
+
+Strand 17
+---------
+
+                  Strand Name1                     Carrier Power at Rcvr Input1 (dBW)    Freq. Doppler Shift1 (Hz)
+-----------------------------------------------    ----------------------------------    -------------------------
+PRN_17_28874/GPSTx16 to Algonquin/Dish/LBand-Rx                              -188.535                     3555.265
+PRN_17_28874/GPSTx16 to Algonquin/Dish/LBand-Rx                              -188.520                     3550.842
+PRN_17_28874/GPSTx16 to Algonquin/Dish/LBand-Rx                              -188.505                     3546.134
+PRN_17_28874/GPSTx16 to Algonquin/Dish/LBand-Rx                              -188.489                     3541.207
+PRN_17_28874/GPSTx16 to Algonquin/Dish/LBand-Rx                              -188.473                     3536.061
+PRN_17_28874/GPSTx16 to Algonquin/Dish/LBand-Rx                              -188.457                     3530.698
+PRN_17_28874/GPSTx16 to Algonquin/Dish/LBand-Rx                              -188.440                     3525.119
+PRN_17_28874/GPSTx16 to Algonquin/Dish/LBand-Rx                              -188.423                     3519.324
+PRN_17_28874/GPSTx16 to Algonquin/Dish/LBand-Rx                             -9999.990                     3513.315
+PRN_17_28874/GPSTx16 to Algonquin/Dish/LBand-Rx                             -9999.990                     3507.092
+PRN_17_28874/GPSTx16 to Algonquin/Dish/LBand-Rx                             -9999.990                     3500.657
+PRN_17_28874/GPSTx16 to Algonquin/Dish/LBand-Rx                             -9999.990                     3494.011
+PRN_17_28874/GPSTx16 to Algonquin/Dish/LBand-Rx                             -9999.990                     3487.154
+PRN_17_28874/GPSTx16 to Algonquin/Dish/LBand-Rx                             -9999.990                     3480.088
+PRN_17_28874/GPSTx16 to Algonquin/Dish/LBand-Rx                             -9999.990                     3472.813
+PRN_17_28874/GPSTx16 to Algonquin/Dish/LBand-Rx                             -9999.990                     3465.332
+PRN_17_28874/GPSTx16 to Algonquin/Dish/LBand-Rx                             -9999.990                     3457.645
+PRN_17_28874/GPSTx16 to Algonquin/Dish/LBand-Rx                             -9999.990                     3449.753
+PRN_17_28874/GPSTx16 to Algonquin/Dish/LBand-Rx                              -188.217                     3444.243
+
+Strand 18
+---------
+
+Strand 19
+---------
+
+Strand 20
+---------
+
+Strand 21
+---------
+
+                  Strand Name1                     Carrier Power at Rcvr Input1 (dBW)    Freq. Doppler Shift1 (Hz)
+-----------------------------------------------    ----------------------------------    -------------------------
+PRN_21_27704/GPSTx20 to Algonquin/Dish/LBand-Rx                             -9999.990                     2606.072
+PRN_21_27704/GPSTx20 to Algonquin/Dish/LBand-Rx                             -9999.990                     2580.180
+PRN_21_27704/GPSTx20 to Algonquin/Dish/LBand-Rx                             -9999.990                     2553.903
+PRN_21_27704/GPSTx20 to Algonquin/Dish/LBand-Rx                             -9999.990                     2527.244
+PRN_21_27704/GPSTx20 to Algonquin/Dish/LBand-Rx                             -9999.990                     2500.204
+PRN_21_27704/GPSTx20 to Algonquin/Dish/LBand-Rx                             -9999.990                     2472.789
+PRN_21_27704/GPSTx20 to Algonquin/Dish/LBand-Rx                             -9999.990                     2445.001
+PRN_21_27704/GPSTx20 to Algonquin/Dish/LBand-Rx                             -9999.990                     2416.843
+PRN_21_27704/GPSTx20 to Algonquin/Dish/LBand-Rx                             -9999.990                     2388.319
+PRN_21_27704/GPSTx20 to Algonquin/Dish/LBand-Rx                             -9999.990                     2359.433
+PRN_21_27704/GPSTx20 to Algonquin/Dish/LBand-Rx                             -9999.990                     2330.188
+PRN_21_27704/GPSTx20 to Algonquin/Dish/LBand-Rx                             -9999.990                     2300.588
+PRN_21_27704/GPSTx20 to Algonquin/Dish/LBand-Rx                             -9999.990                     2270.638
+PRN_21_27704/GPSTx20 to Algonquin/Dish/LBand-Rx                             -9999.990                     2240.341
+PRN_21_27704/GPSTx20 to Algonquin/Dish/LBand-Rx                             -9999.990                     2209.701
+PRN_21_27704/GPSTx20 to Algonquin/Dish/LBand-Rx                             -9999.990                     2178.723
+PRN_21_27704/GPSTx20 to Algonquin/Dish/LBand-Rx                             -9999.990                     2147.410
+PRN_21_27704/GPSTx20 to Algonquin/Dish/LBand-Rx                             -9999.990                     2115.768
+PRN_21_27704/GPSTx20 to Algonquin/Dish/LBand-Rx                             -9999.990                     2083.801
+PRN_21_27704/GPSTx20 to Algonquin/Dish/LBand-Rx                             -9999.990                     2051.513
+PRN_21_27704/GPSTx20 to Algonquin/Dish/LBand-Rx                             -9999.990                     2018.909
+PRN_21_27704/GPSTx20 to Algonquin/Dish/LBand-Rx                             -9999.990                     1985.994
+PRN_21_27704/GPSTx20 to Algonquin/Dish/LBand-Rx                             -9999.990                     1952.772
+PRN_21_27704/GPSTx20 to Algonquin/Dish/LBand-Rx                             -9999.990                     1919.250
+PRN_21_27704/GPSTx20 to Algonquin/Dish/LBand-Rx                             -9999.990                     1885.431
+PRN_21_27704/GPSTx20 to Algonquin/Dish/LBand-Rx                             -9999.990                     1851.322
+PRN_21_27704/GPSTx20 to Algonquin/Dish/LBand-Rx                             -9999.990                     1816.926
+PRN_21_27704/GPSTx20 to Algonquin/Dish/LBand-Rx                             -9999.990                     1782.250
+PRN_21_27704/GPSTx20 to Algonquin/Dish/LBand-Rx                             -9999.990                     1747.299
+PRN_21_27704/GPSTx20 to Algonquin/Dish/LBand-Rx                             -9999.990                     1712.079
+PRN_21_27704/GPSTx20 to Algonquin/Dish/LBand-Rx                             -9999.990                     1676.595
+
+Strand 22
+---------
+
+Strand 23
+---------
+
+Strand 24
+---------
+
+Strand 25
+---------
+
+Strand 26
+---------
+
+                  Strand Name1                     Carrier Power at Rcvr Input1 (dBW)    Freq. Doppler Shift1 (Hz)
+-----------------------------------------------    ----------------------------------    -------------------------
+PRN_27_39166/GPSTx25 to Algonquin/Dish/LBand-Rx                             -9999.990                    -3077.999
+PRN_27_39166/GPSTx25 to Algonquin/Dish/LBand-Rx                             -9999.990                    -3097.447
+PRN_27_39166/GPSTx25 to Algonquin/Dish/LBand-Rx                             -9999.990                    -3116.535
+PRN_27_39166/GPSTx25 to Algonquin/Dish/LBand-Rx                             -9999.990                    -3135.263
+PRN_27_39166/GPSTx25 to Algonquin/Dish/LBand-Rx                             -9999.990                    -3153.632
+PRN_27_39166/GPSTx25 to Algonquin/Dish/LBand-Rx                             -9999.990                    -3171.644
+PRN_27_39166/GPSTx25 to Algonquin/Dish/LBand-Rx                             -9999.990                    -3189.301
+PRN_27_39166/GPSTx25 to Algonquin/Dish/LBand-Rx                             -9999.990                    -3206.602
+PRN_27_39166/GPSTx25 to Algonquin/Dish/LBand-Rx                             -9999.990                    -3223.551
+PRN_27_39166/GPSTx25 to Algonquin/Dish/LBand-Rx                             -9999.990                    -3240.147
+PRN_27_39166/GPSTx25 to Algonquin/Dish/LBand-Rx                             -9999.990                    -3256.394
+PRN_27_39166/GPSTx25 to Algonquin/Dish/LBand-Rx                             -9999.990                    -3272.291
+PRN_27_39166/GPSTx25 to Algonquin/Dish/LBand-Rx                             -9999.990                    -3287.842
+PRN_27_39166/GPSTx25 to Algonquin/Dish/LBand-Rx                             -9999.990                    -3303.047
+PRN_27_39166/GPSTx25 to Algonquin/Dish/LBand-Rx                             -9999.990                    -3317.908
+PRN_27_39166/GPSTx25 to Algonquin/Dish/LBand-Rx                             -9999.990                    -3332.428
+PRN_27_39166/GPSTx25 to Algonquin/Dish/LBand-Rx                             -9999.990                    -3346.607
+PRN_27_39166/GPSTx25 to Algonquin/Dish/LBand-Rx                             -9999.990                    -3360.448
+PRN_27_39166/GPSTx25 to Algonquin/Dish/LBand-Rx                             -9999.990                    -3373.953
+PRN_27_39166/GPSTx25 to Algonquin/Dish/LBand-Rx                             -9999.990                    -3387.124
+PRN_27_39166/GPSTx25 to Algonquin/Dish/LBand-Rx                              -186.964                    -3399.962
+PRN_27_39166/GPSTx25 to Algonquin/Dish/LBand-Rx                              -186.989                    -3412.469
+PRN_27_39166/GPSTx25 to Algonquin/Dish/LBand-Rx                              -187.015                    -3424.648
+PRN_27_39166/GPSTx25 to Algonquin/Dish/LBand-Rx                              -187.041                    -3436.502
+PRN_27_39166/GPSTx25 to Algonquin/Dish/LBand-Rx                              -187.067                    -3448.031
+PRN_27_39166/GPSTx25 to Algonquin/Dish/LBand-Rx                              -187.093                    -3459.238
+PRN_27_39166/GPSTx25 to Algonquin/Dish/LBand-Rx                              -187.120                    -3470.125
+PRN_27_39166/GPSTx25 to Algonquin/Dish/LBand-Rx                              -187.146                    -3480.695
+PRN_27_39166/GPSTx25 to Algonquin/Dish/LBand-Rx                              -187.173                    -3490.950
+PRN_27_39166/GPSTx25 to Algonquin/Dish/LBand-Rx                              -187.200                    -3500.892
+PRN_27_39166/GPSTx25 to Algonquin/Dish/LBand-Rx                              -102.213                    -3510.523
+
+Strand 27
+---------
+
+Strand 28
+---------
+
+                  Strand Name1                     Carrier Power at Rcvr Input1 (dBW)    Freq. Doppler Shift1 (Hz)
+-----------------------------------------------    ----------------------------------    -------------------------
+PRN_30_39533/GPSTx27 to Algonquin/Dish/LBand-Rx                              -186.447                     2489.462
+PRN_30_39533/GPSTx27 to Algonquin/Dish/LBand-Rx                              -186.444                     2467.577
+PRN_30_39533/GPSTx27 to Algonquin/Dish/LBand-Rx                              -186.443                     2445.385
+PRN_30_39533/GPSTx27 to Algonquin/Dish/LBand-Rx                              -186.442                     2422.887
+PRN_30_39533/GPSTx27 to Algonquin/Dish/LBand-Rx                              -186.442                     2400.084
+PRN_30_39533/GPSTx27 to Algonquin/Dish/LBand-Rx                              -186.443                     2376.976
+PRN_30_39533/GPSTx27 to Algonquin/Dish/LBand-Rx                              -186.444                     2353.562
+PRN_30_39533/GPSTx27 to Algonquin/Dish/LBand-Rx                              -186.445                     2329.844
+PRN_30_39533/GPSTx27 to Algonquin/Dish/LBand-Rx                              -186.448                     2305.821
+PRN_30_39533/GPSTx27 to Algonquin/Dish/LBand-Rx                              -186.451                     2281.495
+PRN_30_39533/GPSTx27 to Algonquin/Dish/LBand-Rx                              -186.455                     2256.866
+PRN_30_39533/GPSTx27 to Algonquin/Dish/LBand-Rx                              -186.459                     2231.934
+PRN_30_39533/GPSTx27 to Algonquin/Dish/LBand-Rx                              -186.464                     2206.701
+PRN_30_39533/GPSTx27 to Algonquin/Dish/LBand-Rx                              -186.469                     2181.167
+PRN_30_39533/GPSTx27 to Algonquin/Dish/LBand-Rx                              -186.475                     2155.333
+PRN_30_39533/GPSTx27 to Algonquin/Dish/LBand-Rx                              -186.482                     2129.201
+PRN_30_39533/GPSTx27 to Algonquin/Dish/LBand-Rx                              -186.489                     2102.771
+PRN_30_39533/GPSTx27 to Algonquin/Dish/LBand-Rx                              -186.496                     2076.045
+PRN_30_39533/GPSTx27 to Algonquin/Dish/LBand-Rx                              -186.505                     2049.024
+PRN_30_39533/GPSTx27 to Algonquin/Dish/LBand-Rx                              -186.513                     2021.708
+PRN_30_39533/GPSTx27 to Algonquin/Dish/LBand-Rx                             -9999.990                     1994.101
+PRN_30_39533/GPSTx27 to Algonquin/Dish/LBand-Rx                             -9999.990                     1966.203
+PRN_30_39533/GPSTx27 to Algonquin/Dish/LBand-Rx                             -9999.990                     1938.015
+PRN_30_39533/GPSTx27 to Algonquin/Dish/LBand-Rx                             -9999.990                     1909.540
+PRN_30_39533/GPSTx27 to Algonquin/Dish/LBand-Rx                             -9999.990                     1880.780
+PRN_30_39533/GPSTx27 to Algonquin/Dish/LBand-Rx                             -9999.990                     1851.735
+PRN_30_39533/GPSTx27 to Algonquin/Dish/LBand-Rx                             -9999.990                     1822.409
+PRN_30_39533/GPSTx27 to Algonquin/Dish/LBand-Rx                             -9999.990                     1792.804
+PRN_30_39533/GPSTx27 to Algonquin/Dish/LBand-Rx                             -9999.990                     1762.920
+PRN_30_39533/GPSTx27 to Algonquin/Dish/LBand-Rx                             -9999.990                     1732.762
+PRN_30_39533/GPSTx27 to Algonquin/Dish/LBand-Rx                             -9999.990                     1702.330
+
+Strand 29
+---------
+
+Strand 30
+---------

@@ -27,9 +27,7 @@ package Sattrak
     Real w "argument of perigee deg";
     
     Real Ang_P2ECI[3]" angles between perifocal and ECI in (rad)";
-//    Real Ang_ECI2ECF[1] "Angle between ECI to ECF"
-    
-    
+    //    Real Ang_ECI2ECF[1] "Angle between ECI to ECF"
   initial equation
     N = N0 + (2*Ndot2/86400)*tstart + 3*Nddot6*tstart^2/86400^2;
     M = M0 + ((N*360.)/86400.)*tstart + Ndot2*tstart^2*360/86400^2 + Nddot6*tstart^3*360/86400^3;
@@ -97,15 +95,15 @@ package Sattrak
     r= mod(MyTest.r, 360.);
     M= mod(MyTest.M, 360.);
     theta= mod(MyTest.theta, 360.);
-   (p_sat_ECI,v_sat_ECI)=sat_ECI(ang=MyTest.Ang_P2ECI,p_pf=MyTest.P_sat_pf,v_pf=MyTest.v_sat_pf);
-   (p_sat_ECF,v_sat_ECF)=sat_ECF(ang=GMST, p_ECI=p_sat_ECI, v_ECI=v_sat_ECI);
+    
+   (p_sat_ECI,v_sat_ECI)=sat_ECI(ang=MyTest.Ang_P2ECI,p_pf=MyTest.P_sat_pf,v_pf=MyTest.v_sat_pf);//sat_ECI test
+   (p_sat_ECF,v_sat_ECF)=sat_ECF(ang=GMST, p_ECI=p_sat_ECI, v_ECI=v_sat_ECI); // sat_ECF test
    
-   (p_sat_topo, v_sat_topo) = Range_ECF2topo(p_stn_ECF=GndTest.p_stn_ECF, p_sat_ECF=p_sat_ECF, v_sat_ECF=v_sat_ECF, TM=GndTest.TM);
+   (p_sat_topo, v_sat_topo) = Range_ECF2topo(p_stn_ECF=GndTest.p_stn_ECF, p_sat_ECF=p_sat_ECF, v_sat_ECF=v_sat_ECF, TM=GndTest.TM);   // Range_ECF2topo test
    
    p_stn_ECF=GndTest.p_stn_ECF;
    
-  (Azimuth,Elevation,Azrate,Elrate,Rrate)= Range_topo2look_angles(stn_long=GndTest.stn_long, stn_lat=GndTest.stn_lat, stn_elev=GndTest.stn_elev, p_sat_topo=p_sat_topo, v_sat_topo=v_sat_topo);
-  
+  (Azimuth,Elevation,Azrate,Elrate,Rrate)= Range_topo2look_angles(stn_long=GndTest.stn_long, stn_lat=GndTest.stn_lat, stn_elev=GndTest.stn_elev, p_sat_topo=p_sat_topo, v_sat_topo=v_sat_topo); // Range_topo2look_angles test
     annotation(
     Documentation(info "GPS BIIR-2  (PRN 13)    
   1 24876C 97035A   23081.69756944  .00000000  00000+0  00000+0 0   815
@@ -180,16 +178,20 @@ package Sattrak
    
    protected
    
-  
+  Real v_ECI_a[3];
+  Real v_ECI_b[3];
   constant Real pi = Modelica.Constants.pi;
   constant Real d2r = Modelica.Constants.D2R "Degrees to radians";
   
-  
+  Real cross[3,3] = skew({0., 0., 360./86164. *d2r}) " used to convert to side real days";
   Real TM1[3,3] = axesRotations(sequence={3, 1, 3}, angles={ang*d2r, 0, 0});
   
   algorithm
   p_ECF:= resolve2(TM1,p_ECI );
-  v_ECF:= resolve2(TM1,v_ECI );
+  v_ECI_a := resolve2(TM1,v_ECI);
+  v_ECI_b := v_ECI_a-cross*p_ECF;
+  v_ECF:= resolve2(TM1,v_ECI_b);
+  //v_ECF:= resolve2(TM1,v_ECI );
   
   end sat_ECF;
 
@@ -226,9 +228,7 @@ p_sat_topo := resolve2(TM,p_sat_ECF-p_stn_ECF)"compute pos of sat relative to to
    output Real Elrate "Elevation look angle (deg/min)";
    output Real Rrate "Range rate to dish (km/s)";
   protected 
-  
-  
-  //Real TM[3,3] ={p_sat_topo[1] +T[1],p_sat_topo[2] +T[2],p_sat_topo[3] +T[3]}"ECF to topo coord";
+//Real TM[3,3] ={p_sat_topo[1] +T[1],p_sat_topo[2] +T[2],p_sat_topo[3] +T[3]}"ECF to topo coord";
   Real R =sqrt((p_sat_topo[1]^2) + (p_sat_topo[2]^2) + (p_sat_topo[3]^2)) "Calculate range";
   Real R_r= (p_sat_topo[1] * v_sat_topo[1] + p_sat_topo[2] * v_sat_topo[2]+ p_sat_topo[3]* v_sat_topo[3])/R "range rate to dish";
   
@@ -265,4 +265,60 @@ p_sat_topo := resolve2(TM,p_sat_ECF-p_stn_ECF)"compute pos of sat relative to to
   algorithm
   GMST := mod(theta_mid + 360*rTu*((hours/24)), 360);
   end theta_d;
+
+  model RisingEdge
+    Boolean u;
+    Integer i;
+    Real x;
+  equation
+    x = Modelica.Math.sin(time);
+    u = x > 0.5;
+    when edge(u) then
+      i = pre(i) + 1;
+    end when;
+  end RisingEdge;
+
+  model Visibility
+    import Modelica.Math.Vectors.interpolate;
+   parameter Real Azimuth "Azimuth look angle (deg)";
+   parameter Real Elevation "Elevation look angle (deg)";
+   parameter Real Azrate "Azimuth look angle (deg/min)";
+   parameter Real Elrate "Elevation look angle (deg/min)";
+   parameter Real Rrate;
+   
+    Sattrak.GndStn GndTest(stn_long=281.9269597222222 ,stn_lat=45.95550333333333 ,stn_elev=0.26042);
+   Real ElMin " smallest elevation angle";
+   Real ElMax " largest eleavation angle";
+   // elevation angle limits as a function of azimuth angle
+   parameter Real[361] ElMinTable "minimum elevation angle table";
+   parameter Real[361] ElMaxTable "maximum elevation angle table";
+  Boolean InView;
+  equation
+    // Bring in or calculate Azimuth and Elevation angles and rates
+    
+    (Azimuth, Elevation, Azrate, Elrate, Rrate) = range_topo2look_angles(p_stn_ECF=GndTest.p_stn_ECF, p_sat_ECF=p_sat_ECF, v_sat_ECF=v_sat_ECF, TM=GndTest.TM);
+    //Interpolate ElMin, ElMax functions to get elevation limits
+    ElMin = interpolate(Azimuth, ElMinTable);
+    ElMax = interpolate(Azimuth, ElMaxTable);
+   
+    // Boolean expressions for visibility
+   // if InView == Elevation>=Elmin and Elevation <= Elmax then
+    //   InView = true;
+// end if
+//Booleans for trackability
+// Trackable =;
+// Equations for AOS, LOS
+    if initial() then
+      AOS = if InView and Trackable then time else -1.;
+      
+    end if;
+    
+    
+   // when {edge(InView), other conditions about Trackable, ...} then
+      AOS = time;
+   // end when;
+    //Other conditions for LOS
+    
+    
+  end Visibility;
 end Sattrak;

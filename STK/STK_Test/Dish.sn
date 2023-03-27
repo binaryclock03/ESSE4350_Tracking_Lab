@@ -1,0 +1,297 @@
+stk.v.12.0
+WrittenBy    STK_v12.5.0
+
+BEGIN Sensor
+
+    Name		 Dish
+
+    BEGIN Pattern
+
+        BEGIN SimpleCone
+
+            ConeAngle		  3.3000000000000002e-01
+            AngularPatternResolution		  4.0000000000000000e+00
+
+        END SimpleCone
+
+        DetailedTerrainHorizon		 Yes
+
+
+    END Pattern
+
+    BEGIN Pointing
+
+        BEGIN Targeted
+
+            TargetMode		 Tracking
+            Sequence		 323
+            TrackingMode		 Receive
+            AberrationType		 Annual
+            TimeDelayConvergence		 5e-05
+            MaxTimeStep		 360
+            MinTimeStep		 0.01
+            TimeConvergence		 0.005
+            AbsValueConvergence		 1e-14
+            RelValueConvergence		 1e-08
+            DetectEventsUsingSamplesOnly		 No
+
+            BEGIN AssignedTargets
+
+                Satellite/PRN_01_37753
+                Satellite/PRN_02_28474
+                Satellite/PRN_03_40294
+                Satellite/PRN_04_43873
+                Satellite/PRN_05_35752
+                Satellite/PRN_06_39741
+                Satellite/PRN_07_32711
+                Satellite/PRN_08_40730
+                Satellite/PRN_09_40105
+                Satellite/PRN_10_41019
+                Satellite/PRN_11_48859
+                Satellite/PRN_12_29601
+                Satellite/PRN_13_24876
+                Satellite/PRN_14_46826
+                Satellite/PRN_15_32260
+                Satellite/PRN_16_27663
+                Satellite/PRN_17_28874
+                Satellite/PRN_18_44506
+                Satellite/PRN_19_28190
+                Satellite/PRN_20_26360
+                Satellite/PRN_21_27704
+                Satellite/PRN_23_45854
+                Satellite/PRN_24_38833
+                Satellite/PRN_25_36585
+                Satellite/PRN_26_40534
+                Satellite/PRN_27_39166
+                Satellite/PRN_29_32384
+                Satellite/PRN_30_39533
+                Satellite/PRN_31_29486
+                Satellite/PRN_32_41328
+
+            END AssignedTargets
+
+            BEGIN TargetInviews
+
+                Satellite/PRN_16_27663 2023-03-27T16:00:00.000000000 2023-03-27T16:19:27.927579199
+                Satellite/PRN_09_40105 2023-03-27T16:00:00.000000000 2023-03-27T16:29:42.169278434
+                Satellite/PRN_27_39166 2023-03-27T16:00:00.000000000 2023-03-27T17:06:01.071786032
+                Satellite/PRN_08_40730 2023-03-27T16:00:00.000000000 2023-03-27T18:31:12.662842011
+                Satellite/PRN_07_32711 2023-03-27T16:00:00.000000000 2023-03-27T18:43:42.819344824
+                Satellite/PRN_14_46826 2023-03-27T16:00:00.000000000 2023-03-27T18:47:18.958063017
+                Satellite/PRN_30_39533 2023-03-27T16:00:00.000000000 2023-03-27T19:46:20.566049221
+                Satellite/PRN_21_27704 2023-03-27T16:00:00.000000000 2023-03-27T19:53:28.659016291
+                Satellite/PRN_01_37753 2023-03-27T16:00:00.000000000 2023-03-27T20:47:36.274970008
+                Satellite/PRN_13_24876 2023-03-27T16:10:08.810292892 2023-03-27T18:39:41.214897861
+                Satellite/PRN_17_28874 2023-03-27T16:35:09.782149162 2023-03-27T23:18:56.408699788
+                Satellite/PRN_19_28190 2023-03-27T17:47:28.340443768 2023-03-28T00:17:14.118598839
+                Satellite/PRN_03_40294 2023-03-27T18:30:24.804582128 2023-03-27T22:17:46.978413974
+                Satellite/PRN_14_46826 2023-03-27T18:48:55.351349790 2023-03-27T21:39:11.237943743
+                Satellite/PRN_06_39741 2023-03-27T18:51:36.223840481 2023-03-28T01:12:50.029092852
+                Satellite/PRN_24_38833 2023-03-27T19:04:20.625915665 2023-03-27T21:41:21.828269414
+                Satellite/PRN_11_48859 2023-03-27T20:21:16.169731424 2023-03-28T02:56:31.032706192
+                Satellite/PRN_12_29601 2023-03-27T20:40:32.545253977 2023-03-28T01:06:18.176970868
+                Satellite/PRN_20_26360 2023-03-27T21:33:07.317054691 2023-03-28T00:24:13.350184760
+                Satellite/PRN_25_36585 2023-03-27T21:50:22.177605322 2023-03-28T01:30:27.907082574
+                Satellite/PRN_04_43873 2023-03-27T21:52:39.221312547 2023-03-27T23:47:58.023431775
+                Satellite/PRN_09_40105 2023-03-27T21:59:36.310736959 2023-03-28T01:05:34.989673829
+                Satellite/PRN_05_35752 2023-03-27T22:38:06.409218030 2023-03-28T04:54:52.798421734
+                Satellite/PRN_29_32384 2023-03-27T23:13:30.206284053 2023-03-28T04:16:04.682527596
+                Satellite/PRN_02_28474 2023-03-27T23:31:17.783782314 2023-03-28T05:46:03.034558826
+                Satellite/PRN_20_26360 2023-03-28T00:26:10.768548498 2023-03-28T03:44:17.720542426
+                Satellite/PRN_13_24876 2023-03-28T00:29:56.750119439 2023-03-28T05:30:38.530791172
+                Satellite/PRN_15_32260 2023-03-28T00:58:27.383364510 2023-03-28T06:42:25.510794740
+                Satellite/PRN_18_44506 2023-03-28T01:23:54.555135054 2023-03-28T07:00:23.562451768
+                Satellite/PRN_30_39533 2023-03-28T01:50:40.310695198 2023-03-28T03:47:52.753842793
+                Satellite/PRN_23_45854 2023-03-28T02:17:32.077296355 2023-03-28T08:42:26.614958909
+                Satellite/PRN_24_38833 2023-03-28T03:26:11.205741284 2023-03-28T08:17:50.496959677
+                Satellite/PRN_27_39166 2023-03-28T03:41:39.600168338 2023-03-28T06:06:44.015501043
+                Satellite/PRN_10_41019 2023-03-28T03:47:16.988880957 2023-03-28T09:53:31.975644671
+                Satellite/PRN_32_41328 2023-03-28T04:57:29.053492386 2023-03-28T11:36:13.559782855
+                Satellite/PRN_08_40730 2023-03-28T05:12:34.109198595 2023-03-28T06:01:21.881763323
+                Satellite/PRN_21_27704 2023-03-28T06:24:27.680324222 2023-03-28T09:36:12.021337130
+                Satellite/PRN_12_29601 2023-03-28T06:30:46.547824057 2023-03-28T09:56:25.114392417
+                Satellite/PRN_25_36585 2023-03-28T06:51:40.738619322 2023-03-28T11:04:31.939226487
+                Satellite/PRN_31_29486 2023-03-28T07:19:35.406729061 2023-03-28T13:42:38.412772794
+                Satellite/PRN_01_37753 2023-03-28T07:22:12.140047328 2023-03-28T10:06:43.711241899
+                Satellite/PRN_03_40294 2023-03-28T08:55:48.121474594 2023-03-28T13:06:32.778401902
+                Satellite/PRN_26_40534 2023-03-28T09:01:04.124455787 2023-03-28T14:45:07.187421862
+                Satellite/PRN_29_32384 2023-03-28T10:04:53.624143919 2023-03-28T12:36:00.238978455
+                Satellite/PRN_16_27663 2023-03-28T10:19:18.976524103 2023-03-28T16:00:00.000000000
+                Satellite/PRN_04_43873 2023-03-28T10:22:05.910388671 2023-03-28T15:40:24.507502351
+                Satellite/PRN_09_40105 2023-03-28T11:43:58.910310443 2023-03-28T16:00:00.000000000
+                Satellite/PRN_27_39166 2023-03-28T12:00:58.233648626 2023-03-28T16:00:00.000000000
+                Satellite/PRN_07_32711 2023-03-28T12:48:42.814644606 2023-03-28T16:00:00.000000000
+                Satellite/PRN_08_40730 2023-03-28T12:52:23.341275734 2023-03-28T16:00:00.000000000
+                Satellite/PRN_18_44506 2023-03-28T13:45:03.707579637 2023-03-28T14:44:41.238772578
+                Satellite/PRN_30_39533 2023-03-28T14:26:14.670681856 2023-03-28T16:00:00.000000000
+                Satellite/PRN_21_27704 2023-03-28T15:04:10.945011043 2023-03-28T16:00:00.000000000
+                Satellite/PRN_14_46826 2023-03-28T15:21:17.290783437 2023-03-28T16:00:00.000000000
+                Satellite/PRN_01_37753 2023-03-28T15:52:17.864031360 2023-03-28T16:00:00.000000000
+
+            END TargetInviews
+
+            SaveTargetAccesses		 Yes
+
+            UseTargetSchedule		 No
+
+            BEGIN Stable
+                Use		 No
+                Mode		 NorthStable
+            END Stable
+            AdjustPointingToTargetsDuringAccessToTargets		 No
+            UseTrackControl		 No
+
+        END Targeted
+
+    END Pointing
+
+    BEGIN Optics
+
+        FocalLength		  1.0000000000000000e+02
+        DetectorPitch		  1.0000000000000000e-03
+        IQConstant		  0.0000000000000000e+00
+        GsdCoefficient		  0.0000000000000000e+00
+
+    END Optics
+
+    BEGIN Extensions
+
+        BEGIN EOIR
+        END EOIR
+
+        BEGIN ExternData
+        END ExternData
+
+        BEGIN ADFFileData
+        END ADFFileData
+
+        BEGIN AccessConstraints
+            FieldOfView IncludeIntervals
+            LineOfSight IncludeIntervals
+            ElevationAngle            Min		  9.0000000000000000e+00            Max		  8.9000000000000000e+01 IncludeIntervals
+            AzimuthRate            Max		  4.0000000000000002e-01 IncludeIntervals
+            ElevationRate            Max		  4.0000000000000002e-01 IncludeIntervals
+
+            UsePreferredMaxStep No
+            PreferredMaxStep 360
+        END AccessConstraints
+
+        BEGIN ObjectCoverage
+        END ObjectCoverage
+
+        BEGIN Desc
+        END Desc
+
+        BEGIN Refraction
+            RefractionModel		 Effective Radius Method
+
+            UseRefractionInAccess		 No
+
+            BEGIN ModelData
+                RefractionCeiling		  5.0000000000000000e+03
+                MaxTargetAltitude		  1.0000000000000000e+04
+                EffectiveRadius		  1.3333333333333299e+00
+
+                UseExtrapolation		 Yes
+
+
+            END ModelData
+        END Refraction
+
+        BEGIN Crdn
+        END Crdn
+
+        BEGIN Graphics
+
+            BEGIN Attributes
+
+                Inherit		 Yes
+                Show		 Yes
+                LineStyle		 0
+                LineWidth		 1
+                PatternColor		 #00ffff
+
+            END Attributes
+
+            BEGIN Display
+
+                NumberOfPatterns		 1
+                PersistenceDuration		  0.0000000000000000e+00
+                PersistenceIgnoreDefChg		 No
+                UpdatesDefnOften		 No
+                MinDisplayAltitude		  0.0000000000000000e+00
+                MaxDisplayAltitude		  1.0000000000000000e+07
+                AltitudeIntersectSense		 InsideOut
+                ShowBothAltCrossings		 No
+                IntersectType		 CentralBody
+                ShowGround		 Yes
+                UseProjectionRadii		 Yes
+                ExcludeHorizonArcs		 No
+                ForwardPersist		 No
+                FillPersist		 No
+                DsplyTmHidesPersist		 No
+                SpaceLength		  5.0000000000000000e+07
+                TgtExtLength		  0.0000000000000000e+00
+                FOVHalfAngle		 No
+                HalfAngle		  0.0000000000000000e+00
+                ProjDisplay		 Sphere
+                DisplayType		 ConstantRadius
+                DisplayFOVWithConstraints		 No
+                ShowBoresight		 No
+                BoresightMarker		 4
+                BoresightColor		 #ffffff
+                ShowFill		 No
+                FillTranslucency		 0.5
+                ShowOn2DMap		 Yes
+
+            END Display
+
+            BEGIN Swath
+
+                MaxStep		  6.0000000000000000e+01
+                MinStep		  1.0000000000000001e-01
+                CloseSwath		 Yes
+                Tolerance		  4.0000000000000000e+00
+                MatchTolerance		  9.0000000000000000e+01
+                ShowSwath		 No
+                ComputationalMethod		 Numerical
+                Color		 #00ffff
+                LineStyle		 0
+                LineWidth		 1
+                SwathIntervalPtr		
+                BEGIN EVENTINTERVAL
+                    BEGIN Interval
+                        Start		 27 Mar 2023 16:00:00.000000000
+                        Stop		 28 Mar 2023 16:00:00.000000000
+                    END Interval
+                    IntervalState		 Explicit
+                END EVENTINTERVAL
+
+
+            END Swath
+
+            BEGIN DisplayTimes
+                DisplayType		 AlwaysOn
+            END DisplayTimes
+        END Graphics
+
+        BEGIN Swath
+        END Swath
+
+        BEGIN VO
+        END VO
+
+    END Extensions
+
+    BEGIN SubObjects
+
+        Class Receiver
+
+            LBand-Rx		
+
+        END Class
+
+    END SubObjects
+
+END Sensor
+

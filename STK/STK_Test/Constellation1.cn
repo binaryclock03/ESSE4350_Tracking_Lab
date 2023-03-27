@@ -1,0 +1,57 @@
+stk.v.12.0
+WrittenBy    STK_v12.5.0
+
+BEGIN Constellation
+
+    Name		 Constellation1
+    BEGIN Definition
+        Object		 Satellite/PRN_01_37753/Transmitter/GPSTx
+        Object		 Satellite/PRN_02_28474/Transmitter/GPSTx1
+        Object		 Satellite/PRN_03_40294/Transmitter/GPSTx2
+        Object		 Satellite/PRN_04_43873/Transmitter/GPSTx3
+        Object		 Satellite/PRN_05_35752/Transmitter/GPSTx4
+        Object		 Satellite/PRN_06_39741/Transmitter/GPSTx5
+        Object		 Satellite/PRN_07_32711/Transmitter/GPSTx6
+        Object		 Satellite/PRN_08_40730/Transmitter/GPSTx7
+        Object		 Satellite/PRN_09_40105/Transmitter/GPSTx8
+        Object		 Satellite/PRN_10_41019/Transmitter/GPSTx9
+        Object		 Satellite/PRN_11_48859/Transmitter/GPSTx10
+        Object		 Satellite/PRN_12_29601/Transmitter/GPSTx11
+        Object		 Satellite/PRN_13_24876/Transmitter/GPSTx12
+        Object		 Satellite/PRN_14_46826/Transmitter/GPSTx13
+        Object		 Satellite/PRN_15_32260/Transmitter/GPSTx14
+        Object		 Satellite/PRN_16_27663/Transmitter/GPSTx15
+        Object		 Satellite/PRN_17_28874/Transmitter/GPSTx16
+        Object		 Satellite/PRN_18_44506/Transmitter/GPSTx17
+        Object		 Satellite/PRN_19_28190/Transmitter/GPSTx18
+        Object		 Satellite/PRN_20_26360/Transmitter/GPSTx19
+        Object		 Satellite/PRN_21_27704/Transmitter/GPSTx20
+        Object		 Satellite/PRN_23_45854/Transmitter/GPSTx21
+        Object		 Satellite/PRN_24_38833/Transmitter/GPSTx22
+        Object		 Satellite/PRN_25_36585/Transmitter/GPSTx23
+        Object		 Satellite/PRN_26_40534/Transmitter/GPSTx24
+        Object		 Satellite/PRN_27_39166/Transmitter/GPSTx25
+        Object		 Satellite/PRN_29_32384/Transmitter/GPSTx26
+        Object		 Satellite/PRN_30_39533/Transmitter/GPSTx27
+        Object		 Satellite/PRN_31_29486/Transmitter/GPSTx28
+        Object		 Satellite/PRN_32_41328/Transmitter/GPSTx29
+        Type		 Constellation
+        FromOperator		 Or
+        FromOrder		 1
+        ToOperator		 Or
+        ToOrder		 1
+        UseRoutingRulesFile		 No
+
+    END Definition
+
+    BEGIN Extensions
+
+        BEGIN ADFFileData
+        END ADFFileData
+
+        BEGIN Desc
+        END Desc
+
+    END Extensions
+
+END Constellation
