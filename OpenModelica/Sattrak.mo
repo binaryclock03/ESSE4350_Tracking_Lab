@@ -284,33 +284,35 @@ p_sat_topo := resolve2(TM,p_sat_ECF-p_stn_ECF)"compute pos of sat relative to to
 
   model Visibility
     import Modelica.Math.Vectors.interpolate;
+   Sattrak.GndStn GndTest(stn_long=281.9269597222222 ,stn_lat=45.95550333333333 ,stn_elev=0.26042);
    parameter Real Azimuth "Azimuth look angle (deg)";
    parameter Real Elevation "Elevation look angle (deg)";
    parameter Real Azrate "Azimuth look angle (deg/min)";
    parameter Real Elrate "Elevation look angle (deg/min)";
    parameter Real Rrate;
    
-    Sattrak.GndStn GndTest(stn_long=281.9269597222222 ,stn_lat=45.95550333333333 ,stn_elev=0.26042);
    Real ElMin " smallest elevation angle";
    Real ElMax " largest eleavation angle";
    // elevation angle limits as a function of azimuth angle
    parameter Real[361] ElMinTable "minimum elevation angle table";
    parameter Real[361] ElMaxTable "maximum elevation angle table";
   Boolean InView;
+  Real time;
+  Real AOS;
+  Real LOS;
   equation
+  (Azimuth, Elevation, Azrate, Elrate, Rrate) = range_topo2look_angles(p_stn_ECF=GndTest.p_stn_ECF, p_sat_ECF=p_sat_ECF, v_sat_ECF=v_sat_ECF, TM=GndTest.TM);
     // Bring in or calculate Azimuth and Elevation angles and rates
-    
-    (Azimuth, Elevation, Azrate, Elrate, Rrate) = range_topo2look_angles(p_stn_ECF=GndTest.p_stn_ECF, p_sat_ECF=p_sat_ECF, v_sat_ECF=v_sat_ECF, TM=GndTest.TM);
     //Interpolate ElMin, ElMax functions to get elevation limits
     ElMin = interpolate(Azimuth, ElMinTable);
     ElMax = interpolate(Azimuth, ElMaxTable);
    
     // Boolean expressions for visibility
-   // if InView == Elevation>=Elmin and Elevation <= Elmax then
-    //   InView = true;
-// end if
+    if InView == (Elevation >= Elmin and Elevation <= Elmax) then
+       InView = true;
+    end if;
 //Booleans for trackability
-// Trackable =;
+  Trackable = Azrate <= 10 and Elrate<=10;
 // Equations for AOS, LOS
     if initial() then
       AOS = if InView and Trackable then time else -1.;
@@ -318,11 +320,13 @@ p_sat_topo := resolve2(TM,p_sat_ECF-p_stn_ECF)"compute pos of sat relative to to
     end if;
     
     
-   // when {edge(InView), other conditions about Trackable, ...} then
+  when {edge(InView and Trackable) } then
       AOS = time;
-   // end when;
+  end when;
     //Other conditions for LOS
-    
+  when {noedge(InView or Trackable)} then
+      LOS = time;
+  end when;
     
   end Visibility;
 end Sattrak;
