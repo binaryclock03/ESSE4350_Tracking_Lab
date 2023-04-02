@@ -1,6 +1,6 @@
 from OMPython import ModelicaSystem
 
-model = ModelicaSystem("C:/Users/binar/Documents/Workshop/School/ENG4350/ESSE4350_Tracking_Lab/OpenModelica/Sattrak.mo","Sattrak.GMST",["Modelica.Constants"])
+model = ModelicaSystem("C:/Users/binar/Documents/Workshop/School/ENG4350/ESSE4350_Tracking_Lab/OpenModelica/Sattrak.mo","Sattrak.sattest",["Modelica.Constants"])
 
 tracking_year   = 2023
 tracking_month  = 3
