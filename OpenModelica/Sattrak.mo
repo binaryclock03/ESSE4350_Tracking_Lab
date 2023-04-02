@@ -64,7 +64,7 @@ equation
     Sattrak.Satellite MyTest(tstart=26131., M0=41.2839 , N0=2.00563995, eccn=.0066173, Ndot2= 0, Nddot6=0., i=55.5538, RAAN0=144.8123, w0=51.6039);
    //ARO coords
     Sattrak.GndStn GndTest(stn_long=281.9269597222222 ,stn_lat=45.95550333333333 ,stn_elev=0.26042);
-  
+  Sattrak.Visibility VisTest(Azimuth1=Azimuth,Elevation1=Elevation,Azrate1=Azrate,Elrate1=Elrate,ElMinTable= 9.0, ElMaxTable=89);
     Real r "Sat radial distance (km)";
     Real theta "true anomaly (deg)";
     Real E "Eccentric anomaly (deg";
@@ -78,17 +78,20 @@ equation
     Real v_sat_topo[3]"Velocity of satellite relative to station, topo coords(km/s)";
     Real p_stn_ECF[3];
     
-    Real Azimuth "Azimuth look angle (deg)";
-    Real Elevation "Elevation look angle (deg)";
-    Real Azrate "Azimuth look angle (deg/min)";
-    Real Elrate "Elevation look angle (deg/min)";
-    Real Rrate "Range rate to dish (km/s)";
+    parameter Real Azimuth "Azimuth look angle (deg)";
+    parameter Real Elevation "Elevation look angle (deg)";
+    parameter Real Azrate "Azimuth look angle (deg/min)";
+    parameter Real Elrate "Elevation look angle (deg/min)";
+    parameter Real Rrate  "Range rate to dish (km/s)";
+  
     
     
     Real days = 8483;
     Real hours =time/3600;
     Real GMST;
    
+  Real AOS;
+  Real LOS;
   equation
     GMST = theta_d(days, hours); // calculate GMST angle
     E= mod(MyTest.E, 360.);
@@ -104,6 +107,9 @@ equation
    p_stn_ECF=GndTest.p_stn_ECF;
    
   (Azimuth,Elevation,Azrate,Elrate,Rrate)= Range_topo2look_angles(stn_long=GndTest.stn_long, stn_lat=GndTest.stn_lat, stn_elev=GndTest.stn_elev, p_sat_topo=p_sat_topo, v_sat_topo=v_sat_topo); // Range_topo2look_angles test
+  
+  AOS=VisTest.AOS;
+  LOS=VisTest.LOS;
     annotation(
     Documentation(info "GPS BIIR-2  (PRN 13)    
   1 24876C 97035A   23081.69756944  .00000000  00000+0  00000+0 0   815
@@ -284,36 +290,42 @@ p_sat_topo := resolve2(TM,p_sat_ECF-p_stn_ECF)"compute pos of sat relative to to
 
   model Visibility
     import Modelica.Math.Vectors.interpolate;
-   Sattrak.GndStn GndTest(stn_long=281.9269597222222 ,stn_lat=45.95550333333333 ,stn_elev=0.26042);
-   parameter Real Azimuth "Azimuth look angle (deg)";
-   parameter Real Elevation "Elevation look angle (deg)";
-   parameter Real Azrate "Azimuth look angle (deg/min)";
-   parameter Real Elrate "Elevation look angle (deg/min)";
-   parameter Real Rrate;
+   import Modelica.Blocks.Logical.noedge;
+   //Sattrak.GndStn GndTest(stn_long=281.9269597222222 ,stn_lat=45.95550333333333 ,stn_elev=0.26042);
+   parameter Real Azimuth1[2] "Azimuth look angle (deg)";
+   parameter Real Elevation1[2] "Elevation look angle (deg)";
+   parameter Real Azrate1[2] "Azimuth look angle (deg/min)";
+   parameter Real Elrate1[2] "Elevation look angle (deg/min)";
+   //parameter Real Rrate;
    
    Real ElMin " smallest elevation angle";
    Real ElMax " largest eleavation angle";
    // elevation angle limits as a function of azimuth angle
-   parameter Real[361] ElMinTable "minimum elevation angle table";
-   parameter Real[361] ElMaxTable "maximum elevation angle table";
+  parameter Real[361] ElMinTable "minimum elevation angle table";
+  parameter Real[361] ElMaxTable "maximum elevation angle table";
   Boolean InView;
   Real time;
   Real AOS;
   Real LOS;
+  Boolean Trackable;
   equation
-  (Azimuth, Elevation, Azrate, Elrate, Rrate) = range_topo2look_angles(p_stn_ECF=GndTest.p_stn_ECF, p_sat_ECF=p_sat_ECF, v_sat_ECF=v_sat_ECF, TM=GndTest.TM);
+  
     // Bring in or calculate Azimuth and Elevation angles and rates
     //Interpolate ElMin, ElMax functions to get elevation limits
-    ElMin = interpolate(Azimuth, ElMinTable);
-    ElMax = interpolate(Azimuth, ElMaxTable);
-   
+    if size(ElMinTable==1)then
+      ElMin=ElMinTable;
+      ElMax=ElMaxTable;
+      else
+       ElMin = interpolate(Azimuth1[1], ElMinTable);
+       ElMax = interpolate(Azimuth1[1], ElMaxTable);
+   end if;
     // Boolean expressions for visibility
-    if InView == (Elevation >= Elmin and Elevation <= Elmax) then
+    if InView == (Elevation1[1] >= ElMin and Elevation1[1] <= ElMax) then
        InView = true;
     end if;
-//Booleans for trackability
-  Trackable = Azrate <= 10 and Elrate<=10;
-// Equations for AOS, LOS
+  //Booleans for trackability
+  Trackable = Azrate1[1] <= 10 and Elrate1[1] <=10;
+  // Equations for AOS, LOS
     if initial() then
       AOS = if InView and Trackable then time else -1.;
       
@@ -324,7 +336,7 @@ p_sat_topo := resolve2(TM,p_sat_ECF-p_stn_ECF)"compute pos of sat relative to to
       AOS = time;
   end when;
     //Other conditions for LOS
-  when {noedge(InView or Trackable)} then
+  when {edge(not InView or not Trackable)} then
       LOS = time;
   end when;
     
