@@ -269,10 +269,14 @@ p_sat_topo := resolve2(TM,p_sat_ECF-p_stn_ECF)"compute pos of sat relative to to
   model RisingEdge
     Boolean u;
     Integer i;
-    Real x;
+    Real Elmin;
+    Real ELmax;
+    parameter Real x; // current elevation
+    parameter Real EL_Range[2]; //elevation range of dish [1] is min [2] is max
   equation
-    x = Modelica.Math.sin(time);
-    u = x > 0.5;
+    Elmin =EL_Range[1];
+    Elmax =EL_Range[2];
+    u = x > Elmin and x < Elmax;
     when edge(u) then
       i = pre(i) + 1;
     end when;
