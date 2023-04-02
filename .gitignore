@@ -3,6 +3,10 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+#ingnoring all the om running stuff
+OMRunning/*
+!OMRunning/*.py
+
 # C extensions
 *.so
 
