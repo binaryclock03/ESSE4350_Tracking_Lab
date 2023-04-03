@@ -6,6 +6,8 @@ __pycache__/
 #ingnoring all the om running stuff
 OMRunning/*
 !OMRunning/*.py
+*.sp
+*.e
 
 # C extensions
 *.so

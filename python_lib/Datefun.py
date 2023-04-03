@@ -22,7 +22,7 @@ def ep2dat(epoch) -> dt.datetime:
     minutes = math.floor((float(frcofd)*24 - hours) * 60)
     seconds = math.floor((((float(frcofd)*24 - hours) * 60) - minutes) * 60)
     
-    return dt.datetime(year, 1, 1, hours, minutes, seconds) + dt.timedelta(days=days)
+    return dt.datetime(year, 1, 1, hours, minutes, seconds) + dt.timedelta(days=(days-1))
 
 def curday() -> dt.datetime:
     """Returns the current datetime in <YYYY-MM-DD HH:MM:SS> format"""

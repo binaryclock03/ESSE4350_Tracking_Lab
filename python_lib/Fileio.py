@@ -1,5 +1,5 @@
-from python_lib.station import Station
-from python_lib.satellite import Satellite
+from python_lib.Station import Station
+from python_lib.Satellite import Satellite
 
 def banner():
     """Creates our standard banner and prints it to the console"""
@@ -35,7 +35,7 @@ def ReadNoradTLE(sattelite_file_path) -> dict:
 
         constellation = {}
         for i in range(num_sats):
-            sat = Satellite(lines[i:i+3])
+            sat = Satellite(lines[(i*3):(i*3)+3])
             constellation.update({sat.name:sat})
     return constellation
 
@@ -57,6 +57,7 @@ def STKout(EphemFile, StartString, epsec, Coord, time, position, velocity):
     to_write.append("InterpolationOrder 7")
     to_write.append("CentralBody Earth")
     to_write.append("CoordinateSystem " + Coord)
+    to_write.append("DistanceUnit Kilometers")
     to_write.append("")
     to_write.append("EphemerisTimePosVel")
     to_write.append("")
@@ -80,7 +81,7 @@ def STKout(EphemFile, StartString, epsec, Coord, time, position, velocity):
         to_write[i] += "\n"
 
     # actually write to_write into the file
-    with open("thing.e", 'w') as file:
+    with open(EphemFile, 'w') as file:
         file.writelines(to_write)
 
 def STKout_sp(SPFile, epsec, time, Azimuth, Elevation):
