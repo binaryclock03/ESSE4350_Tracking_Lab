@@ -20,7 +20,7 @@ package Sattrak
     Real a "semi major (deg)";
     Real r "Sat radial distance (km)";
     
-    Real P_sat_pf[3] "Position, Perifocal coords";
+    Real p_sat_pf[3] "Position, Perifocal coords";
     Real v_sat_pf[3] "Velocity Peerifocal coords";
     
     Real RAAN "RAAN in deg";
@@ -42,12 +42,12 @@ equation
     der(N) = 2*Ndot2/86400 + 6*Nddot6*time/86400^2;
     r = a*(1 - eccn^2)/(1 + eccn*cos(theta*d2r));
     
-    P_sat_pf[1] = r*cos(theta*d2r);
-    P_sat_pf[2] = r*sin(theta*d2r);
-    P_sat_pf[3] = 0.;
-    der(P_sat_pf[1]) = v_sat_pf[1];
-    der(P_sat_pf[2]) = v_sat_pf[2];
-    der(P_sat_pf[3]) = v_sat_pf[3];
+    p_sat_pf[1] = r*cos(theta*d2r);
+    p_sat_pf[2] = r*sin(theta*d2r);
+    p_sat_pf[3] = 0.;
+    der(p_sat_pf[1]) = v_sat_pf[1];
+    der(p_sat_pf[2]) = v_sat_pf[2];
+    der(p_sat_pf[3]) = v_sat_pf[3];
     
     der(RAAN)=-((3*(J2)*((Re)^2)*cos(i))/(2*(a^2)*(1-eccn^2)^2))*((N*360.)/86400.);
     der(w)=((3*(J2)*((Re)^2)*(5*cos(i)^2-1))/(2*(a^2)*(1-eccn^2)^2))*((N*360.)/86400.);
@@ -95,14 +95,33 @@ equation
     Real v_sat_topo[3]"Velocity of satellite relative to station, topo coords(km/s)";
     Real p_stn_ECF[3];
     
-    Real Azimuth "Azimuth look angle (deg)";
-    Real Elevation "Elevation look angle (deg)";
-    Real Azrate "Azimuth look angle (deg/min)";
-    Real Elrate "Elevation look angle (deg/min)";
-    Real Rrate "Range rate to dish (km/s)";
+     Real Azimuth "Azimuth look angle (deg)";
+     Real Elevation "Elevation look angle (deg)";
+     Real Azrate "Azimuth look angle (deg/min)";
+     Real Elrate "Elevation look angle (deg/min)";
+     Real Rrate  "Range rate to dish (km/s)";
+  
+    Boolean InView;
+    Boolean TooFast;
     
+    Real AOS;
+    Real LOS;
+    
+    Boolean Trackable;
+    Boolean Not_Trackable;
+  
+  Real ElMin = 9;
+  Real ElMax = 89;
+  Real Elrate_max = 10;
+  Real Azrate_max = 10;
+    
+    
+    Real days = 8483;
+    Real hours =time/3600;
     Real GMST;
    
+  //Real AOS;
+  //Real LOS;
   equation
     GMST = theta_d(days, hours+(time/3600)); // calculate GMST angle
     E= mod(MyTest.E, 360.);
@@ -110,14 +129,40 @@ equation
     M= mod(MyTest.M, 360.);
     theta= mod(MyTest.theta, 360.);
     
-   (p_sat_ECI,v_sat_ECI)=sat_ECI(ang=MyTest.Ang_P2ECI,p_pf=MyTest.P_sat_pf,v_pf=MyTest.v_sat_pf);//sat_ECI test
-   (p_sat_ECF,v_sat_ECF)=sat_ECF(ang=GMST, p_ECI=p_sat_ECI, v_ECI=v_sat_ECI); // sat_ECF test
+   (p_sat_ECI,v_sat_ECI)=sat_ECI(ang=MyTest.Ang_P2ECI,p_sat_pf=MyTest.p_sat_pf,v_sat_pf=MyTest.v_sat_pf);//sat_ECI test
+   (p_sat_ECF,v_sat_ECF)=sat_ECF(ang=GMST, p_sat_ECI=p_sat_ECI, v_sat_ECI=v_sat_ECI); // sat_ECF test
    
    (p_sat_topo, v_sat_topo) = Range_ECF2topo(p_stn_ECF=GndTest.p_stn_ECF, p_sat_ECF=p_sat_ECF, v_sat_ECF=v_sat_ECF, TM=GndTest.TM);   // Range_ECF2topo test
    
    p_stn_ECF=GndTest.p_stn_ECF;
    
   (Azimuth,Elevation,Azrate,Elrate,Rrate)= Range_topo2look_angles(stn_long=GndTest.stn_long, stn_lat=GndTest.stn_lat, stn_elev=GndTest.stn_elev, p_sat_topo=p_sat_topo, v_sat_topo=v_sat_topo); // Range_topo2look_angles test
+  
+  //AOS=VisTest.AOS;
+  //LOS=VisTest.LOS;
+  
+    InView = Elevation >= ElMin and Elevation <=  ElMax;
+    TooFast = abs(Elrate) >= Elrate_max and abs(Azrate) >= Azrate_max;
+    
+    Trackable = InView and not(TooFast);
+    Not_Trackable = not(Trackable);
+  //Booleans for trackability
+  // Equations for AOS, LOS
+    if initial() then
+      AOS = if InView then time else -1.;
+      LOS=-1;
+    end if;
+  
+  
+  
+  when {edge(Trackable)} then
+      AOS = time;
+  end when;
+    //Other conditions for LOS
+  when {edge(Not_Trackable)} then
+      LOS = time;
+  end when;
+  
     annotation(
     Documentation(info "GPS BIIR-2  (PRN 13)    
   1 24876C 97035A   23081.69756944  .00000000  00000+0  00000+0 0   815
@@ -141,7 +186,7 @@ equation
    Real N_lat "Earth ellipsoidal radius of curvature of the meridian";
   equation
   f= 1/298.25223563;
-  e=sqrt(2*f-f^2);
+  e=sqrt((2*f)-(f^2));
   
   a= {-sin(stn_long*d2r),cos(stn_long*d2r),0} "first row";
   
@@ -150,7 +195,7 @@ equation
   c={cos(stn_long*d2r)*cos(stn_lat*d2r), sin(stn_long*d2r)*cos(stn_lat*d2r),sin(stn_lat*d2r)} "third row";
   
   
-   N_lat = Re/sqrt(1-(e^2)*(sin(stn_lat*d2r))^2)"Earth ellipsoidal radius of curvature of the meridian";
+   N_lat = Re/sqrt(1-((e^2)*(sin(stn_lat*d2r))^2))"Earth ellipsoidal radius of curvature of the meridian";
    TM[1,1:3]=a;
    TM[2,1:3]=b;
    TM[3,1:3]=c;
@@ -163,19 +208,19 @@ equation
   import Modelica.Mechanics.MultiBody.Frames.TransformationMatrices.axesRotations;
   import Modelica.Mechanics.MultiBody.Frames.TransformationMatrices.resolve2;
    input Real ang[3] "-argper, -inc, -raan (rad)";
-   input Real p_pf[3] "Posn vector in Perifocal coords (km)";
-   input Real v_pf[3] "Velocity vector in Perifocal coords (km/s)";
+   input Real p_sat_pf[3] "Posn vector in Perifocal coords (km)";
+   input Real v_sat_pf[3] "Velocity vector in Perifocal coords (km/s)";
    
-   output Real p_ECI[3] "Posn vector in ECI coords (km)";
-   output Real v_ECI[3] "Velocity vector in ECI coords (km/s)";
+   output Real p_sat_ECI[3] "Posn vector in ECI coords (km)";
+   output Real v_sat_ECI[3] "Velocity vector in ECI coords (km/s)";
    
   protected
    Real TM[3,3]=axesRotations(sequence={3, 1, 3},angles=ang);
     
   algorithm
   
-   p_ECI:= resolve2(TM,p_pf );
-   v_ECI:= resolve2(TM,v_pf );
+   p_sat_ECI:= resolve2(TM,p_sat_pf );
+   v_sat_ECI:= resolve2(TM,v_sat_pf );
   end sat_ECI;
 
   function sat_ECF"Converts ECI to ECF coordinates"
@@ -184,11 +229,11 @@ equation
   
   
    input Real ang "GMST angle (deg)";
-   input Real p_ECI[3] "Position vector in ECI coordinates (km)";
-   input Real v_ECI[3] "Velocity vector in ECI coordinates (km/s)";
+   input Real p_sat_ECI[3] "Position vector in ECI coordinates (km)";
+   input Real v_sat_ECI[3] "Velocity vector in ECI coordinates (km/s)";
    
-   output Real p_ECF[3] "Position vector in ECF coordinates (km)";
-   output Real v_ECF[3] "Relative Velocity vector in ECF coordinates (km/s)";
+   output Real p_sat_ECF[3] "Position vector in ECF coordinates (km)";
+   output Real v_sat_ECF[3] "Relative Velocity vector in ECF coordinates (km/s)";
    
    protected
    
@@ -201,10 +246,10 @@ equation
   Real TM1[3,3] = axesRotations(sequence={3, 1, 3}, angles={ang*d2r, 0, 0});
   
   algorithm
-  p_ECF:= resolve2(TM1,p_ECI );
-  v_ECI_a := resolve2(TM1,v_ECI);
-  v_ECI_b := v_ECI_a-cross*p_ECF;
-  v_ECF:= resolve2(TM1,v_ECI_b);
+  p_sat_ECF:= resolve2(TM1,p_sat_ECI );
+  v_ECI_a := resolve2(TM1,v_sat_ECI);
+  v_ECI_b := v_ECI_a-cross*p_sat_ECF;
+  v_sat_ECF:= resolve2(TM1,v_ECI_b);
   //v_ECF:= resolve2(TM1,v_ECI );
   
   end sat_ECF;
@@ -299,39 +344,68 @@ p_sat_topo := resolve2(TM,p_sat_ECF-p_stn_ECF)"compute pos of sat relative to to
 
   model Visibility
     import Modelica.Math.Vectors.interpolate;
+   Sattrak.Satellite MyTest(tstart=26131., M0=41.2839 , N0=2.00563995, eccn=.0066173, Ndot2= 0, Nddot6=0., i=55.5538, RAAN0=144.8123, w0=51.6039);
    Sattrak.GndStn GndTest(stn_long=281.9269597222222 ,stn_lat=45.95550333333333 ,stn_elev=0.26042);
-   parameter Real Azimuth "Azimuth look angle (deg)";
-   parameter Real Elevation "Elevation look angle (deg)";
-   parameter Real Azrate "Azimuth look angle (deg/min)";
-   parameter Real Elrate "Elevation look angle (deg/min)";
-   parameter Real Rrate;
    
+    Real p_sat_ECI[3] "Posn vector in ECI coords (km)";
+    Real v_sat_ECI[3] "Velocity vector in ECI coords (km/s)";
+    Real p_sat_ECF[3];
+    Real v_sat_ECF[3]; 
+    Real p_sat_topo[3];
+    Real v_sat_topo[3]; 
+    Real Azimuth "Azimuth look angle (deg)";
+    Real Elevation "Elevation look angle (deg)";
+    Real Azrate "Azimuth look angle (deg/min)";
+    Real Elrate "Elevation look angle (deg/min)";
+    Real Rrate "sat range rate (km/sec)";
+    Real Elrate_max= 10;
+    Real AZrate_max=10;
+   Real GMST;
    Real ElMin " smallest elevation angle";
    Real ElMax " largest eleavation angle";
-   // elevation angle limits as a function of azimuth angle
-   parameter Real[361] ElMinTable "minimum elevation angle table";
-   parameter Real[361] ElMaxTable "maximum elevation angle table";
+   Real Elmins =9 " smallest elevation angle";
+   Real Elmaxs = 89 " largest eleavation angle";
+  
+  Real hours;
+  Real days;
   Boolean InView;
   Real time;
+  //time of event Acquisition/Loss of signal (sec)
   Real AOS;
   Real LOS;
+  
+  Boolean Trackable;
+  Boolean N_View;
+  Boolean Fast;
+  Boolean N_Fast;
+  
   equation
-  (Azimuth, Elevation, Azrate, Elrate, Rrate) = range_topo2look_angles(p_stn_ECF=GndTest.p_stn_ECF, p_sat_ECF=p_sat_ECF, v_sat_ECF=v_sat_ECF, TM=GndTest.TM);
     // Bring in or calculate Azimuth and Elevation angles and rates
-    //Interpolate ElMin, ElMax functions to get elevation limits
-    ElMin = interpolate(Azimuth, ElMinTable);
-    ElMax = interpolate(Azimuth, ElMaxTable);
+   (p_sat_ECI,v_sat_ECI)=sat_ECI(ang=MyTest.Ang_P2ECI,p_sat_pf=MyTest.p_sat_pf,v_sat_pf=MyTest.v_sat_pf);//sat_ECI test
+   
+   GMST = theta_d(days, hours); // calculate GMST angle
+   
+   (p_sat_ECF,v_sat_ECF)=sat_ECF(ang=GMST, p_sat_ECI=p_sat_ECI, v_sat_ECI=v_sat_ECI); // sat_ECF test
+   
+   (p_sat_topo, v_sat_topo) = Range_ECF2topo(p_stn_ECF=GndTest.p_stn_ECF, p_sat_ECF=p_sat_ECF, v_sat_ECF=v_sat_ECF, TM=GndTest.TM);   // Range_ECF2topo test
+   
+   (Azimuth,Elevation,Azrate,Elrate,Rrate)= Range_topo2look_angles(stn_long=GndTest.stn_long, stn_lat=GndTest.stn_lat, stn_elev=GndTest.stn_elev, p_sat_topo=p_sat_topo, v_sat_topo=v_sat_topo); // Range_topo2look_angles test
+  
+  //Interpolate to get elevation angles
    
     // Boolean expressions for visibility
-    if InView == (Elevation >= Elmin and Elevation <= Elmax) then
+    if InView == (Elevation >= ElMin and Elevation <= ElMax) then
        InView = true;
     end if;
-//Booleans for trackability
-  Trackable = Azrate <= 10 and Elrate<=10;
-// Equations for AOS, LOS
+    N_View= Elevation <=ElMin or Elevation >= ElMax;
+    Fast = Elrate >= Elrate_max or Elrate<=-Elrate_max or Azrate >= Azrate_max or Azrate <=-Azrate-max;
+    N_Fast= Elrate <= Elrate_max and Elrate>=-Elrate_max and Azrate <= Azrate_max and Azrate >=-Azrate-max;
+  //Booleans for trackability
+  //Trackable = Azrate <= 10 and Elrate <=10;
+  // Equations for AOS, LOS
     if initial() then
       AOS = if InView and Trackable then time else -1.;
-      
+      LOS=-1;
     end if;
     
     
