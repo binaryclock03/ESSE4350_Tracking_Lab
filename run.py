@@ -37,7 +37,7 @@ for folder in folders:
 ## runing the model
 from OMPython import ModelicaSystem
 
-model = ModelicaSystem("C:/Users/Daniel/Documents/Workshop/School Stuff/ESSE4350_Tracking_Lab/OpenModelica/Sattrak.mo","Sattrak.Sat_Test",["Modelica.Constants"])
+model = ModelicaSystem("C:/Users/binar/Documents/Workshop/School/ENG4350/ESSE4350_Tracking_Lab/OpenModelica/Sattrak.mo","Sattrak.Sat_Test",["Modelica.Constants"])
 
 for sat in constellation_inputs.values():
   if True:#sat.name == "SBIIR-9(PRN21)":
@@ -106,7 +106,7 @@ for sat in constellation_inputs.values():
     os.mkdir(f"outputs\\{sat.name}")
     STKout(f"outputs\\{sat.name}\\ECI_{sat.name}.e", f"{tracking_day} {month_name} {tracking_year} {int(tracking_hour)}:{tracking_minute}:00", 0, "Custom TEMED", time, p_ECI, v_ECI)
     STKout(f"outputs\\{sat.name}\\ECF_{sat.name}.e", f"{tracking_day} {month_name} {tracking_year} {int(tracking_hour)}:{tracking_minute}:00", 0, "Fixed", time, p_ECF, v_ECF)
-    STKout(f"outputs\\{sat.name}\\TOPO_{sat.name}.e", f"{tracking_day} {month_name} {tracking_year} {int(tracking_hour)}:{tracking_minute}:00", 0, "Custom Facility/ARO Gnd_topo_sys", time, p_TOPO, v_TOPO)
+    STKout(f"outputs\\{sat.name}\\TOPO_{sat.name}.e", f"{tracking_day} {month_name} {tracking_year} {int(tracking_hour)}:{tracking_minute}:00", 0, "Custom Gnd_topo_sys Facility/ARO", time, p_TOPO, v_TOPO)
     STKout_sp(f"outputs\\{sat.name}\\POINT_{sat.name}.sp", 0, time, az, el)
 
     AOS_time_n = []

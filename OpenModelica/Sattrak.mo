@@ -95,11 +95,11 @@ equation
     Real v_sat_topo[3]"Velocity of satellite relative to station, topo coords(km/s)";
     Real p_stn_ECF[3];
     
-     Real Azimuth "Azimuth look angle (deg)";
-     Real Elevation "Elevation look angle (deg)";
-     Real Azrate "Azimuth look angle (deg/min)";
-     Real Elrate "Elevation look angle (deg/min)";
-     Real Rrate  "Range rate to dish (km/s)";
+    Real Azimuth "Azimuth look angle (deg)";
+    Real Elevation "Elevation look angle (deg)";
+    Real Azrate "Azimuth look angle (deg/min)";
+    Real Elrate "Elevation look angle (deg/min)";
+    Real Rrate  "Range rate to dish (km/s)";
   
     Boolean InView;
     Boolean TooFast;
@@ -110,14 +110,11 @@ equation
     Boolean Trackable;
     Boolean Not_Trackable;
   
-  Real ElMin = 9;
-  Real ElMax = 89;
-  Real Elrate_max = 10;
-  Real Azrate_max = 10;
+    Real ElMin = 9;
+    Real ElMax = 89;
+    Real Elrate_max = 10;
+    Real Azrate_max = 10;
     
-    
-    Real days = 8483;
-    Real hours =time/3600;
     Real GMST;
    
   //Real AOS;
@@ -275,6 +272,7 @@ p_sat_topo := resolve2(TM,p_sat_ECF-p_stn_ECF)"compute pos of sat relative to to
   import Modelica.Mechanics.MultiBody.Frames.TransformationMatrices.axesRotations;
   import Modelica.Mechanics.MultiBody.Frames.TransformationMatrices.resolve2;
   import Modelica.Math.atan;
+  
    input Real stn_long "Station longitude (degE)";
    input Real stn_lat "Station latitude (degN)";
    input Real stn_elev "Station elevation (m)";
