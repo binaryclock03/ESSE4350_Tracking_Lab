@@ -89,16 +89,61 @@ BEGIN Scenario
         Module		 stk_mission_air
         Module		 stk_mission_level1
         Module		 stk_mission_level2
+        Module		 stk_mission_level3
         Module		 stk_mission_space
     END ScenarioLicenses
 
     BEGIN QuickReports
 
         BEGIN Report
-            Name		 Peristuff
+            Name		 Topo
             Type		 Graph
             BaseDir		 User
-            Style		 Peristuff
+            Style		 Topo
+            AGIViewer		 No
+            Instance		 Satellite/PRN_13_24876
+            BEGIN TimeData
+                BEGIN Section
+                    SectionNumber		 1
+                    SectionType		 2
+                    ShowIntervals		 No
+                    BEGIN IntervalList
+
+                        DateUnitAbrv		 UTCG
+
+                        BEGIN Intervals
+
+"24 Mar 2023 00:00:00.000000000" "25 Mar 2023 00:00:00.000000000"
+                        END Intervals
+
+                    END IntervalList
+
+                    TimeType		 Availability
+                    SamplingType		 Default
+                    TimeBound		 0
+                END Section
+            END TimeData
+            BEGIN PreDataList
+                BEGIN PreData
+                    ServiceName		 VectorChooseAxes
+                    Data		 Facility/Facility1 Gnd_topo_ax
+                END PreData
+            END PreDataList
+            DisplayOnLoad		 Yes
+            FrameType		 0
+            DockCircleID		 0
+            DockID		 0
+            WindowRectLeft		 228
+            WindowRectTop		 773
+            WindowRectRight		 388
+            WindowRectBottom		 801
+        END Report
+
+        BEGIN Report
+            Name		 ECF
+            Type		 Graph
+            BaseDir		 User
+            Style		 ECF
             AGIViewer		 No
             Instance		 Satellite/PRN_13_24876
             BEGIN TimeData
@@ -132,17 +177,61 @@ BEGIN Scenario
             FrameType		 0
             DockCircleID		 0
             DockID		 0
-            WindowRectLeft		 378
-            WindowRectTop		 769
-            WindowRectRight		 577
-            WindowRectBottom		 816
+            WindowRectLeft		 388
+            WindowRectTop		 773
+            WindowRectRight		 548
+            WindowRectBottom		 801
         END Report
 
         BEGIN Report
-            Name		 Peristuff1
+            Name		 ECF1
             Type		 Graph
             BaseDir		 User
-            Style		 Peristuff
+            Style		 ECF
+            AGIViewer		 No
+            Instance		 Satellite/PRN_13_24876
+            BEGIN TimeData
+                BEGIN Section
+                    SectionNumber		 1
+                    SectionType		 2
+                    ShowIntervals		 No
+                    BEGIN IntervalList
+
+                        DateUnitAbrv		 UTCG
+
+                        BEGIN Intervals
+
+"24 Mar 2023 00:00:00.000000000" "25 Mar 2023 00:00:00.000000000"
+                        END Intervals
+
+                    END IntervalList
+
+                    TimeType		 Availability
+                    SamplingType		 Default
+                    TimeBound		 0
+                END Section
+            END TimeData
+            BEGIN PreDataList
+                BEGIN PreData
+                    ServiceName		 VectorChooseAxes
+                    Data		 CentralBody/Earth Fixed
+                END PreData
+            END PreDataList
+            DisplayOnLoad		 No
+            FrameType		 0
+            DockCircleID		 0
+            DockID		 0
+            WindowRectLeft		 306
+            WindowRectTop		 183
+            WindowRectRight		 1783
+            WindowRectBottom		 671
+        END Report
+
+        BEGIN Report
+            Name		 Topo1
+            Type		 Graph
+            BaseDir		 User
+            Style		 Topo
             AGIViewer		 No
             Instance		 Satellite/PRN_13_24876
             BEGIN TimeData
@@ -176,19 +265,19 @@ BEGIN Scenario
             FrameType		 0
             DockCircleID		 0
             DockID		 0
-            WindowRectLeft		 378
-            WindowRectTop		 752
-            WindowRectRight		 577
-            WindowRectBottom		 799
+            WindowRectLeft		 548
+            WindowRectTop		 773
+            WindowRectRight		 708
+            WindowRectBottom		 801
         END Report
 
         BEGIN Report
-            Name		 Peristuff2
+            Name		 LookAngles
             Type		 Graph
             BaseDir		 User
-            Style		 Peristuff
+            Style		 LookAngles
             AGIViewer		 No
-            Instance		 Satellite/PRN_13_24876
+            Instance		 Facility/Facility1/Sensor/Sensor1
             BEGIN TimeData
                 BEGIN Section
                     SectionNumber		 1
@@ -200,41 +289,29 @@ BEGIN Scenario
 
                         BEGIN Intervals
 
-"24 Mar 2023 00:00:00.000000000" "25 Mar 2023 00:00:00.000000000"
+"24 Mar 2023 00:22:29.201445634" "24 Mar 2023 19:25:15.619270531"
                         END Intervals
 
                     END IntervalList
 
                     TimeType		 Availability
-                    SamplingType		 Default
+                    SamplingType		 FixedStep
+                    Step		 60
                     TimeBound		 0
                 END Section
             END TimeData
-            BEGIN PreDataList
-                BEGIN PreData
-                    ServiceName		 VectorChooseAxes
-                    Data		 Facility/Facility1 Gnd_topo_ax
-                END PreData
-            END PreDataList
             DisplayOnLoad		 Yes
             FrameType		 0
             DockCircleID		 0
             DockID		 0
-            WindowRectLeft		 506
-            WindowRectTop		 297
-            WindowRectRight		 1622
-            WindowRectBottom		 838
+            WindowRectLeft		 657
+            WindowRectTop		 198
+            WindowRectRight		 2134
+            WindowRectBottom		 686
         END Report
     END QuickReports
 
     BEGIN Extensions
-
-        BEGIN ScenarioEOIR
-            BEGIN EOIRCloudData Earth
-            END EOIRCloudData
-            BEGIN EOIRTEXTUREMAPSDATA Earth
-            END EOIRTEXTUREMAPSDATA
-        END ScenarioEOIR
 
         BEGIN ClsApp
             RangeConstraint		 5000
@@ -365,7 +442,6 @@ BEGIN Scenario
             BitsUnit		 MegaBits
             MagneticFieldUnit		 nanoTesla
             VoltageUnit		 Volts
-            RepeatCount		 Cycles
         END Units
 
         BEGIN ReportUnits
@@ -414,7 +490,6 @@ BEGIN Scenario
             BitsUnit		 MegaBits
             MagneticFieldUnit		 nanoTesla
             VoltageUnit		 Volts
-            RepeatCount		 Cycles
         END ReportUnits
 
         BEGIN ConnectReportUnits
@@ -463,16 +538,41 @@ BEGIN Scenario
             BitsUnit		 MegaBits
             MagneticFieldUnit		 nanoTesla
             VoltageUnit		 Volts
-            RepeatCount		 Cycles
         END ConnectReportUnits
 
         BEGIN ReportFavorites
+            BEGIN Class
+                Name		 Facility
+                BEGIN Favorite
+                    Type		 Graph
+                    BaseDir		 User
+                    Style		 ECF
+                END Favorite
+            END Class
             BEGIN Class
                 Name		 Satellite
                 BEGIN Favorite
                     Type		 Graph
                     BaseDir		 User
-                    Style		 Peristuff
+                    Style		 Topo
+                END Favorite
+                BEGIN Favorite
+                    Type		 Graph
+                    BaseDir		 User
+                    Style		 ECF
+                END Favorite
+                BEGIN Favorite
+                    Type		 Graph
+                    BaseDir		 User
+                    Style		 PF
+                END Favorite
+            END Class
+            BEGIN Class
+                Name		 Sensor
+                BEGIN Favorite
+                    Type		 Graph
+                    BaseDir		 User
+                    Style		 LookAngles
                 END Favorite
             END Class
         END ReportFavorites
@@ -1678,6 +1778,13 @@ BEGIN Scenario
 
         BEGIN SpiceExt
             OutputErrorMsgsOnLoad		 No
+            SpiceFile		 "asteroids.bsp"
+            SpiceFile		 "jupiter.bsp"
+            SpiceFile		 "mars.bsp"
+            SpiceFile		 "neptune.bsp"
+            SpiceFile		 "pluto.bsp"
+            SpiceFile		 "saturn.bsp"
+            SpiceFile		 "uranus.bsp"
             SpiceFile		 "planets.bsp"
         END SpiceExt
 
@@ -1690,7 +1797,7 @@ BEGIN Scenario
 
                 StartTime		 24 Mar 2023 00:00:00.000000000
                 EndTime		 25 Mar 2023 00:00:00.000000000
-                CurrentTime		 24 Mar 2023 00:00:00.000000000
+                CurrentTime		 24 Mar 2023 17:20:50.000000000
                 Direction		 Forward
                 UpdateDelta		 10
                 RefreshDelta		 0.010000
@@ -2410,8 +2517,13 @@ BEGIN Scenario
         Instance Facility/Facility1
             *		
             Facility/Facility1		
+            Facility/Facility1/Sensor/Sensor1		
+        END Instance
+        Instance Facility/Facility1/Sensor/Sensor1
+            Facility/Facility1/Sensor/Sensor1		
         END Instance
         Instance Satellite/PRN_13_24876
+            Facility/Facility1/Sensor/Sensor1		
             Satellite/PRN_13_24876		
         END Instance
     END References

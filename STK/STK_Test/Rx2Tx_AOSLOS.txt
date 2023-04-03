@@ -1,0 +1,21 @@
+                                                                                                                                                                                  27 Mar 2023 11:36:49
+Chain-Rx2Tx
+
+
+                                          Strand Name                                                 Start Time (UTCG)       Start Azimuth (deg)    Start Elevation (deg)        Stop Time (UTCG)    
+----------------------------------------------------------------------------------------------    ------------------------    -------------------    ---------------------    ------------------------
+Facility/Algonquin/Sensor/Dish/Receiver/LBand-Rx to Satellite/PRN_01_37753/Transmitter/GPSTx      27 Mar 2023 16:00:00.000                160.252                   10.448    27 Mar 2023 16:30:00.000
+Facility/Algonquin/Sensor/Dish/Receiver/LBand-Rx to Satellite/PRN_07_32711/Transmitter/GPSTx6     27 Mar 2023 16:00:00.000                254.816                   78.507    27 Mar 2023 16:30:00.000
+Facility/Algonquin/Sensor/Dish/Receiver/LBand-Rx to Satellite/PRN_09_40105/Transmitter/GPSTx8     27 Mar 2023 16:00:00.000                213.737                   20.422    27 Mar 2023 16:30:00.000
+Facility/Algonquin/Sensor/Dish/Receiver/LBand-Rx to Satellite/PRN_13_24876/Transmitter/GPSTx12    27 Mar 2023 16:00:00.000                330.737                    6.032    27 Mar 2023 16:30:00.000
+Facility/Algonquin/Sensor/Dish/Receiver/LBand-Rx to Satellite/PRN_16_27663/Transmitter/GPSTx15    27 Mar 2023 16:00:00.000                 80.624                   15.463    27 Mar 2023 16:30:00.000
+Facility/Algonquin/Sensor/Dish/Receiver/LBand-Rx to Satellite/PRN_21_27704/Transmitter/GPSTx20    27 Mar 2023 16:00:00.000                139.669                   30.091    27 Mar 2023 16:30:00.000
+Facility/Algonquin/Sensor/Dish/Receiver/LBand-Rx to Satellite/PRN_14_46826/Transmitter/GPSTx13    27 Mar 2023 16:00:00.000                274.204                   20.744    27 Mar 2023 16:30:00.000
+Facility/Algonquin/Sensor/Dish/Receiver/LBand-Rx to Satellite/PRN_30_39533/Transmitter/GPSTx27    27 Mar 2023 16:00:00.000                303.230                   43.902    27 Mar 2023 16:30:00.000
+Facility/Algonquin/Sensor/Dish/Receiver/LBand-Rx to Satellite/PRN_27_39166/Transmitter/GPSTx25    27 Mar 2023 16:00:00.000                 51.475                   35.475    27 Mar 2023 16:30:00.000
+Facility/Algonquin/Sensor/Dish/Receiver/LBand-Rx to Satellite/PRN_08_40730/Transmitter/GPSTx7     27 Mar 2023 16:00:00.000                 70.333                   70.006    27 Mar 2023 16:30:00.000
+Facility/Algonquin/Sensor/Dish/Receiver/LBand-Rx to Satellite/PRN_04_43873/Transmitter/GPSTx3     27 Mar 2023 16:00:00.000                186.803                    2.915    27 Mar 2023 16:07:47.146
+Facility/Algonquin/Sensor/Dish/Receiver/LBand-Rx to Satellite/PRN_17_28874/Transmitter/GPSTx16    27 Mar 2023 16:12:19.968                221.821                    0.001    27 Mar 2023 16:30:00.000
+
+
+No Access Found

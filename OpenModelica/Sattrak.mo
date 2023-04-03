@@ -27,16 +27,14 @@ package Sattrak
     Real w "argument of perigee deg";
     
     Real Ang_P2ECI[3]" angles between perifocal and ECI in (rad)";
-//    Real Ang_ECI2ECF[1] "Angle between ECI to ECF"
-    
-    
+    //    Real Ang_ECI2ECF[1] "Angle between ECI to ECF"
   initial equation
     N = N0 + (2*Ndot2/86400)*tstart + 3*Nddot6*tstart^2/86400^2;
     M = M0 + ((N*360.)/86400.)*tstart + Ndot2*tstart^2*360/86400^2 + Nddot6*tstart^3*360/86400^3;
     
     RAAN=RAAN0 +(-(((3*(J2)*((Re)^2)*cos(i))/(2*(a^2)*(1-eccn^2)^2))*((N*360.)/86400.)))*(time-tstart);
     w=w0 +((3*(J2)*((Re)^2)*(5*cos(i)^2-1))/(2*(a^2)*(1-eccn^2)^2))*((N*360.)/86400.)*(time-tstart);
-  equation
+equation
     M*d2r = E*d2r - eccn*sin(E*d2r);
     tan(theta*d2r/2.) = sqrt((1 + eccn)/(1 - eccn))*tan(E*d2r/2.);
     a^3*(N*2*pi/86400.)^2 = 398600.4;
@@ -64,9 +62,9 @@ package Sattrak
 
   model Sat_Test
     Sattrak.Satellite MyTest(tstart=26131., M0=41.2839 , N0=2.00563995, eccn=.0066173, Ndot2= 0, Nddot6=0., i=55.5538, RAAN0=144.8123, w0=51.6039);
-    Sattrak.GndStn GndTest(stn_long=281.9269597222222 ,stn_lat=45.95550333333333 ,stn_elev= 0.26042);
-    //ARO coords
-   
+   //ARO coords
+    Sattrak.GndStn GndTest(stn_long=281.9269597222222 ,stn_lat=45.95550333333333 ,stn_elev=0.26042);
+  Sattrak.Visibility VisTest(Azimuth1=Azimuth,Elevation1=Elevation,Azrate1=Azrate,Elrate1=Elrate,ElMinTable= 9.0, ElMaxTable=89);
     Real r "Sat radial distance (km)";
     Real theta "true anomaly (deg)";
     Real E "Eccentric anomaly (deg";
@@ -80,32 +78,38 @@ package Sattrak
     Real v_sat_topo[3]"Velocity of satellite relative to station, topo coords(km/s)";
     Real p_stn_ECF[3];
     
-    Real Azimuth "Azimuth look angle (deg)";
-    Real Elevation "Elevation look angle (deg)";
-    Real Azrate "Azimuth look angle (deg/min)";
-    Real Elrate "Elevation look angle (deg/min)";
-    Real Rrate "Range rate to dish (km/s)";
+    parameter Real Azimuth "Azimuth look angle (deg)";
+    parameter Real Elevation "Elevation look angle (deg)";
+    parameter Real Azrate "Azimuth look angle (deg/min)";
+    parameter Real Elrate "Elevation look angle (deg/min)";
+    parameter Real Rrate  "Range rate to dish (km/s)";
+  
     
     
     Real days = 8483;
     Real hours =time/3600;
     Real GMST;
    
+  Real AOS;
+  Real LOS;
   equation
     GMST = theta_d(days, hours); // calculate GMST angle
     E= mod(MyTest.E, 360.);
     r= mod(MyTest.r, 360.);
     M= mod(MyTest.M, 360.);
     theta= mod(MyTest.theta, 360.);
-   (p_sat_ECI,v_sat_ECI)=sat_ECI(ang=MyTest.Ang_P2ECI,p_pf=MyTest.P_sat_pf,v_pf=MyTest.v_sat_pf);
-   (p_sat_ECF,v_sat_ECF)=sat_ECF(ang=GMST, p_ECI=p_sat_ECI, v_ECI=v_sat_ECI);
+    
+   (p_sat_ECI,v_sat_ECI)=sat_ECI(ang=MyTest.Ang_P2ECI,p_pf=MyTest.P_sat_pf,v_pf=MyTest.v_sat_pf);//sat_ECI test
+   (p_sat_ECF,v_sat_ECF)=sat_ECF(ang=GMST, p_ECI=p_sat_ECI, v_ECI=v_sat_ECI); // sat_ECF test
    
-   (p_sat_topo, v_sat_topo) = Range_ECF2topo(p_stn_ECF=GndTest.p_stn_ECF, p_sat_ECF=p_sat_ECF, v_sat_ECF=v_sat_ECF, TM=GndTest.TM);
+   (p_sat_topo, v_sat_topo) = Range_ECF2topo(p_stn_ECF=GndTest.p_stn_ECF, p_sat_ECF=p_sat_ECF, v_sat_ECF=v_sat_ECF, TM=GndTest.TM);   // Range_ECF2topo test
    
    p_stn_ECF=GndTest.p_stn_ECF;
    
-  (Azimuth,Elevation,Azrate,Elrate,Rrate)= Range_topo2look_angles(stn_long=GndTest.stn_long, stn_lat=GndTest.stn_lat, stn_elev=GndTest.stn_elev, p_sat_topo=p_sat_topo, v_sat_topo=v_sat_topo);
+  (Azimuth,Elevation,Azrate,Elrate,Rrate)= Range_topo2look_angles(stn_long=GndTest.stn_long, stn_lat=GndTest.stn_lat, stn_elev=GndTest.stn_elev, p_sat_topo=p_sat_topo, v_sat_topo=v_sat_topo); // Range_topo2look_angles test
   
+  AOS=VisTest.AOS;
+  LOS=VisTest.LOS;
     annotation(
     Documentation(info "GPS BIIR-2  (PRN 13)    
   1 24876C 97035A   23081.69756944  .00000000  00000+0  00000+0 0   815
@@ -121,14 +125,12 @@ package Sattrak
    Real f "Earth reference ellipsoid flattening";
    Real e "ellipsoidal eccentricity";
    Real p_stn_ECF[3] "Station coordinates in ECF (km)";
-   Real p_stn_ECF1[3] "Station coordinates in ECF (km)";
    Real TM[3,3] "Transform matrix from ECF to topo";
    Real Re=6378.137 "earth radius km";
    Real a[3] "1st row of TM";
    Real b[3] "2nd row of TM";
    Real c[3] "3rd row of TM";
    Real N_lat "Earth ellipsoidal radius of curvature of the meridian";
-   Real R[3,3];
   equation
   stn_lonR = stn_long*d2r;
   stn_latR = stn_lat*d2r;
@@ -148,13 +150,7 @@ package Sattrak
    TM[2,1:3]=b;
    TM[3,1:3]=c;
    
-   p_stn_ECF1={(N_lat + stn_elev)*cos(stn_lat*d2r)*cos(stn_long*d2r),(N_lat + stn_elev)*cos(stn_lat*d2r)*sin(stn_long*d2r),((1-e^2)*N_lat + stn_elev)*sin(stn_lat*d2r)} "ECF cartesian coordinates of tracking station";
-  
-  
-  R[1,1:3]= { cos(182.199*d2r),  sin(182.199*d2r),  0 };
-  R[2,1:3]={-sin(182.199*d2r), cos(182.199*d2r),  0            };
-  R[3,1:3]={ 0,             0,             1            };
-  p_stn_ECF = transpose(R)*p_stn_ECF1;
+   p_stn_ECF={(N_lat + stn_elev)*cos(stn_lat*d2r)*cos(stn_long*d2r),(N_lat + stn_elev)*cos(stn_lat*d2r)*sin(stn_long*d2r),((1-e^2)*N_lat + stn_elev)*sin(stn_lat*d2r)} "ECF cartesian coordinates of tracking station";
   end GndStn;
 
   function sat_ECI"Converts Peri-focal coordinates to ECI"
@@ -191,16 +187,20 @@ package Sattrak
    
    protected
    
-  
+  Real v_ECI_a[3];
+  Real v_ECI_b[3];
   constant Real pi = Modelica.Constants.pi;
   constant Real d2r = Modelica.Constants.D2R "Degrees to radians";
   
-  
+  Real cross[3,3] = skew({0., 0., 360./86164. *d2r}) " used to convert to side real days";
   Real TM1[3,3] = axesRotations(sequence={3, 1, 3}, angles={ang*d2r, 0, 0});
   
   algorithm
   p_ECF:= resolve2(TM1,p_ECI );
-  v_ECF:= resolve2(TM1,v_ECI );
+  v_ECI_a := resolve2(TM1,v_ECI);
+  v_ECI_b := v_ECI_a-cross*p_ECF;
+  v_ECF:= resolve2(TM1,v_ECI_b);
+  //v_ECF:= resolve2(TM1,v_ECI );
   
   end sat_ECF;
 
@@ -237,9 +237,7 @@ p_sat_topo := resolve2(TM,p_sat_ECF-p_stn_ECF)"compute pos of sat relative to to
    output Real Elrate "Elevation look angle (deg/min)";
    output Real Rrate "Range rate to dish (km/s)";
   protected 
-  
-  
-  //Real TM[3,3] ={p_sat_topo[1] +T[1],p_sat_topo[2] +T[2],p_sat_topo[3] +T[3]}"ECF to topo coord";
+//Real TM[3,3] ={p_sat_topo[1] +T[1],p_sat_topo[2] +T[2],p_sat_topo[3] +T[3]}"ECF to topo coord";
   Real R =sqrt((p_sat_topo[1]^2) + (p_sat_topo[2]^2) + (p_sat_topo[3]^2)) "Calculate range";
   Real R_r= (p_sat_topo[1] * v_sat_topo[1] + p_sat_topo[2] * v_sat_topo[2]+ p_sat_topo[3]* v_sat_topo[3])/R "range rate to dish";
   
@@ -276,4 +274,74 @@ p_sat_topo := resolve2(TM,p_sat_ECF-p_stn_ECF)"compute pos of sat relative to to
   algorithm
   GMST := mod(theta_mid + 360*rTu*((hours/24)), 360);
   end theta_d;
+
+  model RisingEdge
+    Boolean u;
+    Integer i;
+    Real Elmin;
+    Real ELmax;
+    parameter Real x; // current elevation
+    parameter Real EL_Range[2]; //elevation range of dish [1] is min [2] is max
+  equation
+    Elmin =EL_Range[1];
+    Elmax =EL_Range[2];
+    u = x > Elmin and x < Elmax;
+    when edge(u) then
+      i = pre(i) + 1;
+    end when;
+  end RisingEdge;
+
+  model Visibility
+    import Modelica.Math.Vectors.interpolate;
+   import Modelica.Blocks.Logical.noedge;
+   //Sattrak.GndStn GndTest(stn_long=281.9269597222222 ,stn_lat=45.95550333333333 ,stn_elev=0.26042);
+   parameter Real Azimuth1[2] "Azimuth look angle (deg)";
+   parameter Real Elevation1[2] "Elevation look angle (deg)";
+   parameter Real Azrate1[2] "Azimuth look angle (deg/min)";
+   parameter Real Elrate1[2] "Elevation look angle (deg/min)";
+   //parameter Real Rrate;
+   
+   Real ElMin " smallest elevation angle";
+   Real ElMax " largest eleavation angle";
+   // elevation angle limits as a function of azimuth angle
+  parameter Real[361] ElMinTable "minimum elevation angle table";
+  parameter Real[361] ElMaxTable "maximum elevation angle table";
+  Boolean InView;
+  Real time;
+  Real AOS;
+  Real LOS;
+  Boolean Trackable;
+  equation
+  
+    // Bring in or calculate Azimuth and Elevation angles and rates
+    //Interpolate ElMin, ElMax functions to get elevation limits
+    if size(ElMinTable==1)then
+      ElMin=ElMinTable;
+      ElMax=ElMaxTable;
+      else
+       ElMin = interpolate(Azimuth1[1], ElMinTable);
+       ElMax = interpolate(Azimuth1[1], ElMaxTable);
+   end if;
+    // Boolean expressions for visibility
+    if InView == (Elevation1[1] >= ElMin and Elevation1[1] <= ElMax) then
+       InView = true;
+    end if;
+  //Booleans for trackability
+  Trackable = Azrate1[1] <= 10 and Elrate1[1] <=10;
+  // Equations for AOS, LOS
+    if initial() then
+      AOS = if InView and Trackable then time else -1.;
+      
+    end if;
+    
+    
+  when {edge(InView and Trackable) } then
+      AOS = time;
+  end when;
+    //Other conditions for LOS
+  when {edge(not InView or not Trackable)} then
+      LOS = time;
+  end when;
+    
+  end Visibility;
 end Sattrak;

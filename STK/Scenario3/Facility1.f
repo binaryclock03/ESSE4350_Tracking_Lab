@@ -48,12 +48,6 @@ BEGIN Facility
         END ObjectCoverage
 
         BEGIN Desc
-            BEGIN ShortText
-
-            END ShortText
-            BEGIN LongText
-
-            END LongText
         END Desc
 
         BEGIN Atmosphere
@@ -936,7 +930,7 @@ BEGIN Facility
                 END VECTOR
                 AlignmentLimit		  0.0000000000000000e+00
                 Constraint		
-                 1.0000000000000004e+00
+                 1.0000000000000002e+00
                  0.0000000000000000e+00
                  0.0000000000000000e+00
                 ConstraintUiSequence		 123
@@ -1100,6 +1094,12 @@ BEGIN Facility
     END Extensions
 
     BEGIN SubObjects
+
+        Class Sensor
+
+            Sensor1		
+
+        END Class
 
     END SubObjects
 
