@@ -13,7 +13,7 @@ class Satellite():
     orbitnum:int
 
     def __init__(self, lines):
-        self.name = str(lines[0][2:]).replace("\n", "")
+        self.name = str(lines[0][2:]).replace("\n", "").replace(" ", "")
         self.refepoch = float(lines[1][17:32])
         self.incl = float(lines[2][8:16])
         self.raan = float(lines[2][17:25])
