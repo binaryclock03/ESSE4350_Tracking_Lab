@@ -63,7 +63,8 @@ equation
   model Sat_Test
     Sattrak.Satellite MyTest(tstart=26131., M0=41.2839 , N0=2.00563995, eccn=.0066173, Ndot2= 0, Nddot6=0., i=55.5538, RAAN0=144.8123, w0=51.6039);
    //ARO coords
-    Sattrak.GndStn GndTest(stn_long=281.9269597222222 ,stn_lat=45.95550333333333 ,stn_elev=0.26042);
+    Sattrak.GndStn GndTest(stn_long=281.9269597222222 ,stn_lat=45.95550333333333 ,stn_elev=0.26042,Frequency=1575.42);
+     
   //Sattrak.Visibility VisTest(Azimuth1=Azimuth,Elevation1=Elevation,Azrate1=Azrate,Elrate1=Elrate,ElMinTable= 9.0, ElMaxTable=89);
     Real r "Sat radial distance (km)";
     Real theta "true anomaly (deg)";
@@ -84,6 +85,7 @@ equation
      Real Elrate "Elevation look angle (deg/min)";
      Real Rrate  "Range rate to dish (km/s)";
   
+    Real doppler " the value of the doppler shift";
     Boolean InView;
     Boolean TooFast;
     
@@ -121,8 +123,6 @@ equation
    
   (Azimuth,Elevation,Azrate,Elrate,Rrate)= Range_topo2look_angles(stn_long=GndTest.stn_long, stn_lat=GndTest.stn_lat, stn_elev=GndTest.stn_elev, p_sat_topo=p_sat_topo, v_sat_topo=v_sat_topo); // Range_topo2look_angles test
   
-  //AOS=VisTest.AOS;
-  //LOS=VisTest.LOS;
   
     InView = Elevation >= ElMin and Elevation <=  ElMax;
     TooFast = abs(Elrate) >= Elrate_max and abs(Azrate) >= Azrate_max;
@@ -146,6 +146,10 @@ equation
       LOS = time;
   end when;
   
+  doppler=(Rrate/300000)*GndTest.Frequency;
+  
+  
+  
     annotation(
     Documentation(info "GPS BIIR-2  (PRN 13)    
   1 24876C 97035A   23081.69756944  .00000000  00000+0  00000+0 0   815
@@ -158,6 +162,8 @@ equation
    parameter Real stn_long "Station longitude (degE)";
    parameter Real stn_lat "Station latitude (degN)";
    parameter Real stn_elev "Station elevation (km)";
+   
+   parameter Real Frequency "frequency of ground station dish (MHz)";
    Real f "Earth reference ellipsoid flattening";
    Real e "ellipsoidal eccentricity";
    Real p_stn_ECF[3] "Station coordinates in ECF (km)";
