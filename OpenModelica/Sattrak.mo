@@ -301,7 +301,7 @@ p_sat_topo := resolve2(TM,p_sat_ECF-p_stn_ECF)"compute pos of sat relative to to
   Real Azr =(p_sat_topo[2]*v_sat_topo[1]-p_sat_topo[1]*v_sat_topo[2])/(sqrt((p_sat_topo[1]^2) +(p_sat_topo[2]^2)))^2"Azimuth look angle rate (deg/min)";
   
   Real El = atan(p_sat_topo[3]/(sqrt(p_sat_topo[1]^2 +p_sat_topo[2]^2)))*180/Modelica.Constants.pi "Elevation look angle (deg)";
-  Real Elr =(((p_sat_topo[1]^2) + (p_sat_topo[2]^2))*v_sat_topo[3]-((p_sat_topo[3])/sqrt((p_sat_topo[1]^2) + (p_sat_topo[2]^2)))*(p_sat_topo[1]*v_sat_topo[1]+p_sat_topo[2]*v_sat_topo[2]))*(1/sqrt((p_sat_topo[1]^2) + (p_sat_topo[2]^2)+(p_sat_topo[3]^2))^2)"Elevation look angle rate (deg/min)"; 
+  Real Elr =(sqrt((p_sat_topo[1]^2) + (p_sat_topo[2]^2))*v_sat_topo[3]-((p_sat_topo[3])/sqrt((p_sat_topo[1]^2) + (p_sat_topo[2]^2)))*(p_sat_topo[1]*v_sat_topo[1]+p_sat_topo[2]*v_sat_topo[2]))*(1/sqrt((p_sat_topo[1]^2) + (p_sat_topo[2]^2)+(p_sat_topo[3]^2))^2)"Elevation look angle rate (deg/min)"; 
   algorithm
    Azimuth :=Az;
    Elevation := El;
