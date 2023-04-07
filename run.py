@@ -29,7 +29,7 @@ for folder in folders:
 ## runing the model
 from OMPython import ModelicaSystem
 
-model = ModelicaSystem("Sattrak.mo","Sattrak.Sat_Test",["Modelica.Constants"])
+model = ModelicaSystem("OpenModelica/Sattrak.mo","Sattrak.Sat_Test",["Modelica.Constants"])
 
 for sat in constellation_inputs.values():
   if True:#sat.name == "SBIIR-9(PRN21)":

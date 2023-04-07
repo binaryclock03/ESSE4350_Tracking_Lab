@@ -158,12 +158,12 @@ def station_out(station_out_filepath, tracking_start:datetime, time, elevation, 
         
         az_deg, az_min, az_sec = Datefun.deg_splitter(azimuth[i])
         az_sec = "{:2.1f}".format(az_sec)
-        az_rate = str(round(azimuth_rate[i]*60,8))
+        az_rate = str(round(azimuth_rate[i],8))
         az_string = f"{az_deg:{3}} {az_min:{2}} " + az_sec.ljust(4) + " " + az_rate + " "
 
         el_deg, el_min, el_sec = Datefun.deg_splitter(elevation[i])
         el_sec = "{:2.1f}".format(el_sec)
-        el_rate = str(round(elevation_rate[i]*60,8))
+        el_rate = str(round(elevation_rate[i],8))
         el_string = f"{el_deg:{2}} {el_min:{2}} " + el_sec.ljust(4) + " " + el_rate
 
         to_write.append(time_string + az_string + el_string)
