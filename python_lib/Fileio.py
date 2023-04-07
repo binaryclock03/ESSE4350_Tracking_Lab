@@ -1,5 +1,7 @@
 from python_lib.Station import Station
 from python_lib.Satellite import Satellite
+from datetime import datetime, timedelta
+import python_lib.Datefun as Datefun
 
 def banner():
     """Creates our standard banner and prints it to the console"""
@@ -20,11 +22,11 @@ def errmsg(error_str):
     """Prints an error msg to the console as <[ERROR] error_str>"""
     print("[ERROR] " + error_str)
 
-def ReadStationFile(station_file_path) -> Station:
+def read_stn_file(station_file_path) -> Station:
     """Reads a station file and returns it as a station object"""
     return Station(station_file_path)
 
-def ReadNoradTLE(sattelite_file_path) -> dict:
+def read_TLE_file(sattelite_file_path) -> dict:
     """Reads a TLE file and returns a dictionary of sattelites of form {name:str : Satellite}"""
     with open(sattelite_file_path) as file:
         lines = file.readlines()
@@ -38,6 +40,34 @@ def ReadNoradTLE(sattelite_file_path) -> dict:
             sat = Satellite(lines[(i*3):(i*3)+3])
             constellation.update({sat.name:sat})
     return constellation
+
+def read_schedule_file(schedule_file_path):
+    """Reads the schedule file and returns the tracking date and tracking duration as datetime objects"""
+    tracking_duration: timedelta
+    tracking_start_date: datetime
+    tracking_resolution = 2
+    with open(schedule_file_path) as file:
+        lines = file.readlines()
+        for line in lines:
+            if "TrackingDuration" in line:
+                line = line.split(":")[-1].replace(" ", "")
+                tracking_duration = timedelta(seconds=int(line))
+
+            if "TrackingStartDate" in line:
+                line =  line.split(":")
+                year =      int(line[1])
+                month =     int(line[2])
+                day =       int(line[3].split(" ")[0])
+                hour =      int(line[3].split(" ")[-1])
+                minute =    int(line[4])
+                second =    int(line[5])
+
+                tracking_start_date = datetime(year=year, month=month, day=day, hour=hour, minute=minute, second=second)
+            
+            #if "TrackingResolution" in line:
+            #    tracking_resolution = int(line.split(":")[-1])
+
+    return tracking_start_date, tracking_duration, tracking_resolution
 
 def STKout(EphemFile, StartString, epsec, Coord, time, position, velocity):
     """Writes an ephem file with the parameters given"""
@@ -113,3 +143,35 @@ def STKout_sp(SPFile, epsec, time, Azimuth, Elevation):
     with open(SPFile, 'w') as file:
         file.writelines(to_write)
 
+def station_out(station_out_filepath, tracking_start:datetime, time, elevation, elevation_rate, azimuth, azimuth_rate):
+    # define how many sensorpointing points will be in the file
+    num_points = len(time)
+    # generate a list of stuff to write, where each element is a single line
+    to_write = []
+    
+    # here we loop through all the points, writing them into the to_write list
+    for i in range(num_points):
+        curr_time = tracking_start + timedelta(seconds=time[i])
+
+        time_string = (f"{curr_time.year:{4}}.{int((Datefun.doy(curr_time.year, curr_time.month, curr_time.day))):{2}}."
+                      +f"{curr_time.hour}:{curr_time.minute}:{curr_time.second} ")
+        
+        az_deg, az_min, az_sec = Datefun.deg_splitter(azimuth[i])
+        az_sec = "{:2.1f}".format(az_sec)
+        az_rate = str(round(azimuth_rate[i]*60,8))
+        az_string = f"{az_deg:{3}} {az_min:{2}} " + az_sec.ljust(4) + " " + az_rate + " "
+
+        el_deg, el_min, el_sec = Datefun.deg_splitter(elevation[i])
+        el_sec = "{:2.1f}".format(el_sec)
+        el_rate = str(round(elevation_rate[i]*60,8))
+        el_string = f"{el_deg:{2}} {el_min:{2}} " + el_sec.ljust(4) + " " + el_rate
+
+        to_write.append(time_string + az_string + el_string)
+
+    # now loop through all the lines and add pagebreaks
+    for i in range(len(to_write)):
+        to_write[i] += "\n"
+
+    # write the to_write list to a file
+    with open(station_out_filepath, 'w') as file:
+        file.writelines(to_write)

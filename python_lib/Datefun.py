@@ -40,3 +40,25 @@ def seconds_to_midnight(epoch):
     d0 = ep2dat(epoch)
     d1 = dt.datetime(year=d0.year, month=d0.month, day=d0.day+1, hour=0)
     return float((d1 - d0).seconds)
+
+def month_num_to_name(month_numb):
+    if month_numb == 1:    return "Jan"
+    elif month_numb == 2:  return "Feb"
+    elif month_numb == 3:  return "Mar"
+    elif month_numb == 4:  return "Apr"
+    elif month_numb == 5:  return "May"
+    elif month_numb == 6:  return "Jun"
+    elif month_numb == 7:  return "Jul"
+    elif month_numb == 8:  return "Aug"
+    elif month_numb == 9:  return "Sep"
+    elif month_numb == 10: return "Oct"
+    elif month_numb == 11: return "Nov"
+    elif month_numb == 12: return "Dec"
+
+def deg_splitter(degrees):
+    if degrees < 0:
+        degrees += 360
+    deg = int(degrees)
+    arc_min = int((degrees-deg) * 60)
+    arc_sec = ((degrees-deg)*60 -arc_min) * 60
+    return deg, arc_min, arc_sec

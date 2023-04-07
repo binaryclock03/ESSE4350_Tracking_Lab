@@ -7,6 +7,7 @@ __pycache__/
 OMRunning/*
 !OMRunning/*.py
 *.sp
+outputs/*/*.txt
 *.e
 
 # C extensions

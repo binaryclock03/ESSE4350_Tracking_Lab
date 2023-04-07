@@ -1,0 +1,5 @@
+# UTC tracking start time in <YYYY:MM:DD HH:MM:SS> format
+TrackingStartDate: 2023:04:07 10:30:00
+
+# Tracking duration in seconds
+TrackingDuration: 3600
