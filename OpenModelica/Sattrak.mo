@@ -102,6 +102,7 @@ equation
     Real Elrate "Elevation look angle (deg/min)";
     Real Rrate  "Range rate to dish (km/s)";
   
+    Real doppler " the value of the doppler shift";
     Boolean InView;
     Boolean TooFast;
     
@@ -136,8 +137,6 @@ equation
    
   (Azimuth,Elevation,Range,Azrate,Elrate,Rrate)= Range_topo2look_angles(stn_long=GndTest.stn_long, stn_lat=GndTest.stn_lat, stn_elev=GndTest.stn_elev, p_sat_topo=p_sat_topo, v_sat_topo=v_sat_topo); // Range_topo2look_angles test
   
-  //AOS=VisTest.AOS;
-  //LOS=VisTest.LOS;
   
     InView = Elevation >= ElMin and Elevation <=  ElMax;
     TooFast = abs(Elrate) >= Elrate_max and abs(Azrate) >= Azrate_max;
@@ -161,6 +160,10 @@ equation
       LOS = time;
   end when;
   
+  doppler=(Rrate/300000)*GndTest.Frequency;
+  
+  
+  
     annotation(
     Documentation(info "GPS BIIR-2  (PRN 13)    
   1 24876C 97035A   23081.69756944  .00000000  00000+0  00000+0 0   815
@@ -173,6 +176,8 @@ equation
    parameter Real stn_long "Station longitude (degE)";
    parameter Real stn_lat "Station latitude (degN)";
    parameter Real stn_elev "Station elevation (km)";
+   
+   parameter Real Frequency "frequency of ground station dish (MHz)";
    Real f "Earth reference ellipsoid flattening";
    Real e "ellipsoidal eccentricity";
    Real p_stn_ECF[3] "Station coordinates in ECF (km)";
@@ -292,11 +297,11 @@ p_sat_topo := resolve2(TM,p_sat_ECF-p_stn_ECF)"compute pos of sat relative to to
   Real R =sqrt((p_sat_topo[1]^2) + (p_sat_topo[2]^2) + (p_sat_topo[3]^2)) "Calculate range";
   Real R_r= (p_sat_topo[1] * v_sat_topo[1] + p_sat_topo[2] * v_sat_topo[2]+ p_sat_topo[3]* v_sat_topo[3])/R "range rate to dish";
   
-  Real Az = atan(p_sat_topo[1]/p_sat_topo[2])*r2d "Azimuth look angle (deg)";
-  Real Azr =(p_sat_topo[2]*v_sat_topo[1]-p_sat_topo[1]*v_sat_topo[2])/((p_sat_topo[1]^2) +(p_sat_topo[2]^2))^2"Azimuth look angle rate (deg/min)";
+  Real Az = atan(p_sat_topo[1]/p_sat_topo[2])*180/Modelica.Constants.pi "Azimuth look angle (deg)";
+  Real Azr =(p_sat_topo[2]*v_sat_topo[1]-p_sat_topo[1]*v_sat_topo[2])/(sqrt((p_sat_topo[1]^2) +(p_sat_topo[2]^2)))^2"Azimuth look angle rate (deg/min)";
   
-  Real El = atan(p_sat_topo[3]/(sqrt(p_sat_topo[1]^2 +p_sat_topo[2]^2)))*r2d "Elevation look angle (deg)";
-  Real Elr =(((p_sat_topo[1]^2) + (p_sat_topo[2]^2))*v_sat_topo[3]-((p_sat_topo[3])/((p_sat_topo[1]^2) + (p_sat_topo[2]^2)))*(p_sat_topo[1]*v_sat_topo[1]+p_sat_topo[2]*v_sat_topo[2]))*(1/((p_sat_topo[1]^2) + (p_sat_topo[2]^2)+(p_sat_topo[3]^2))^2)"Elevation look angle rate (deg/min)"; 
+  Real El = atan(p_sat_topo[3]/(sqrt(p_sat_topo[1]^2 +p_sat_topo[2]^2)))*180/Modelica.Constants.pi "Elevation look angle (deg)";
+  Real Elr =(((p_sat_topo[1]^2) + (p_sat_topo[2]^2))*v_sat_topo[3]-((p_sat_topo[3])/sqrt((p_sat_topo[1]^2) + (p_sat_topo[2]^2)))*(p_sat_topo[1]*v_sat_topo[1]+p_sat_topo[2]*v_sat_topo[2]))*(1/sqrt((p_sat_topo[1]^2) + (p_sat_topo[2]^2)+(p_sat_topo[3]^2))^2)"Elevation look angle rate (deg/min)"; 
   algorithm
    Azimuth :=Az;
    Elevation := El;
