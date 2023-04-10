@@ -26,6 +26,9 @@ for folder in folders:
       os.remove(file)
     os.rmdir(folder)
 
+if not "outputs" in glob.glob('*'):
+  os.mkdir("outputs")
+
 ## runing the model
 from OMPython import ModelicaSystem
 
@@ -125,6 +128,8 @@ files = dir.glob("Sattrak.Sat_Test*")
 for fi in files:
   fi.unlink()
 
+print("\n\n\n")
+banner()
 
 to_print = "\nSat#__Sat Name____________Access#___AOS Date Time___________LOS Date Time___________Duration__Min Power (dBm)"
 for i, sat in enumerate(constellation_AOS_LOS.items()):
@@ -172,5 +177,7 @@ for i, sat in enumerate(constellation_AOS_LOS.items()):
                     outputs[2][aos_index:], outputs[5][aos_index:])
 
 print(to_print)
+
+anykey()
 
 exit()
