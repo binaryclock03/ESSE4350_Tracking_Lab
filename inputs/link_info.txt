@@ -1,0 +1,7 @@
+Sattelite_EIRP 11.4
+Frequency 1.57542
+Efficiency 0.5
+Diameter 46
+Bandwidth 2
+RCV_Gain 56
+RCV_Noise_Temp 200
