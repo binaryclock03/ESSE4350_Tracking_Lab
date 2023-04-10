@@ -45,7 +45,7 @@ def read_schedule_file(schedule_file_path):
     """Reads the schedule file and returns the tracking date and tracking duration as datetime objects"""
     tracking_duration: timedelta
     tracking_start_date: datetime
-    tracking_resolution = 2
+    tracking_resolution = 100
     with open(schedule_file_path) as file:
         lines = file.readlines()
         for line in lines:

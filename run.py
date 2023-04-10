@@ -2,7 +2,7 @@ from python_lib.Datefun import *
 from python_lib.Fileio import *
 from python_lib.Satellite import *
 from python_lib.Station import *
-from datetime import datetime, timedelta
+from datetime import timedelta
 import os
 import glob
 import numpy as np
@@ -131,6 +131,7 @@ for i, sat in enumerate(constellation_AOS_LOS.items()):
   if len(sat[1][0]) == 0:
     pass
   else:
+    os.mkdir(f"outputs\\{sat[0]}")
     outputs = constellation_outputs.get(sat[0])
     to_print += f"\n{i}".ljust(7) + f"{sat[0]}".ljust(20)
     for i, aos in enumerate(sat[1][0]):
@@ -151,8 +152,8 @@ for i, sat in enumerate(constellation_AOS_LOS.items()):
         to_print += str(round(np.min(link[aos_index:los_index])+30,1))
                         
         # File creation
-        os.mkdir(f"outputs\\{sat[0]}")
-        STKout_sp(f"outputs\\{sat[0]}\\{sat[0]}_ACCESS{i+1}.sp", 0, outputs[0][aos_index:los_index], outputs[1][aos_index:los_index], outputs[2][aos_index:los_index])
+        
+        STKout_sp(f"outputs\\{sat[0]}\\{sat[0]}_ACCESS{i+1}.sp", 0, outputs[0][aos_index:los_index], outputs[2][aos_index:los_index], outputs[1][aos_index:los_index])
         station_out(f"outputs\\{sat[0]}\\{sat[0]}_ACCESS_{i+1}.txt", tracking_datetime, outputs[0][aos_index:los_index], outputs[1][aos_index:los_index], outputs[1][aos_index:los_index], outputs[2][aos_index:los_index], outputs[2][aos_index:los_index])
       else: 
         end_time = tracking_datetime + tracking_duration
@@ -164,9 +165,8 @@ for i, sat in enumerate(constellation_AOS_LOS.items()):
         link = constellation_LINK.get(sat[0])
         to_print += str(round(np.min(link[aos_index:])+30,1))
     
-        # File creation 
-        os.mkdir(f"outputs\\{sat[0]}")
-        STKout_sp(f"outputs\\{sat[0]}\\{sat[0]}_ACCESS_{i+1}.sp", 0, outputs[0][aos_index:], outputs[1][aos_index:], outputs[2][aos_index:])
+        # File creation
+        STKout_sp(f"outputs\\{sat[0]}\\{sat[0]}_ACCESS_{i+1}.sp", 0, outputs[0][aos_index:], outputs[2][aos_index:], outputs[1][aos_index:])
         station_out(f"outputs\\{sat[0]}\\{sat[0]}_ACCESS_{i+1}.txt", tracking_datetime, outputs[0][aos_index:], 
                     outputs[1][aos_index:], outputs[4][aos_index:], 
                     outputs[2][aos_index:], outputs[5][aos_index:])

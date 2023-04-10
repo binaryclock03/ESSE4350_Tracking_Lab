@@ -293,17 +293,23 @@ p_sat_topo := resolve2(TM,p_sat_ECF-p_stn_ECF)"compute pos of sat relative to to
    output Real Rrate "Range rate to dish (km/s)";
   protected 
   constant Real r2d = Modelica.Constants.R2D "Degrees to radians";
+  Real Az;
 //Real TM[3,3] ={p_sat_topo[1] +T[1],p_sat_topo[2] +T[2],p_sat_topo[3] +T[3]}"ECF to topo coord";
   Real R =sqrt((p_sat_topo[1]^2) + (p_sat_topo[2]^2) + (p_sat_topo[3]^2)) "Calculate range";
   Real R_r= (p_sat_topo[1] * v_sat_topo[1] + p_sat_topo[2] * v_sat_topo[2]+ p_sat_topo[3]* v_sat_topo[3])/R "range rate to dish";
   
-  Real Az = atan(p_sat_topo[1]/p_sat_topo[2])*180/Modelica.Constants.pi "Azimuth look angle (deg)";
+  
+  
   Real Azr =((p_sat_topo[2]*v_sat_topo[1]-p_sat_topo[1]*v_sat_topo[2])/(sqrt((p_sat_topo[1]^2) +(p_sat_topo[2]^2)))^2)*60"Azimuth look angle rate (deg/min)";
   
   Real El = atan(p_sat_topo[3]/(sqrt(p_sat_topo[1]^2 +p_sat_topo[2]^2)))*180/Modelica.Constants.pi "Elevation look angle (deg)";
   Real Elr =((sqrt((p_sat_topo[1]^2) + (p_sat_topo[2]^2))*v_sat_topo[3]-((p_sat_topo[3])/sqrt((p_sat_topo[1]^2) + (p_sat_topo[2]^2)))*(p_sat_topo[1]*v_sat_topo[1]+p_sat_topo[2]*v_sat_topo[2]))*(1/sqrt((p_sat_topo[1]^2) + (p_sat_topo[2]^2)+(p_sat_topo[3]^2))^2))*60"Elevation look angle rate (deg/min)"; 
   algorithm
-   Azimuth :=Az;
+   if p_sat_topo[1] >= 0 and p_sat_topo[2] >=0 then
+    Azimuth := atan(p_sat_topo[1]/p_sat_topo[2])*180/Modelica.Constants.pi "Azimuth look angle (deg)";
+   else
+    Azimuth := atan(p_sat_topo[1]/p_sat_topo[2])*180/Modelica.Constants.pi + 180;
+   end if;
    Elevation := El;
    Range :=R;
    Azrate :=Azr;
